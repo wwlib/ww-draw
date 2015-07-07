@@ -1,0 +1,30 @@
+{
+  "name": "wwdraw",
+  "version": "0.0.1",
+  "description": "A time-based drawing library for capturing and replaying multi-layered, multi-author drawings",
+  "main": "lib/main.js",
+  "scripts": {
+    "test": "tbd"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/wwlib/wwdraw.git"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-babel": "^5.1.0",
+    "gulp-cached": "^1.0.4",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-watch": "^4.2.4",
+    "gulp-mocha": "^2.1.0"
+  },
+  "keywords": [
+    "drawing"
+  ],
+  "author": "Andrew Rapo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wwlib/wwdraw/issues"
+  },
+  "homepage": "https://github.com/wwlib/wwdraw#readme"
+}
