@@ -15,6 +15,9 @@ class WwSprite {
         this.width = 0;
         this.height = 0;
 
+        this.sourceX = 0;
+        this.sourceY = 0;
+
         this.img = {};
         this.bmp = {};
         //this.debug:WwDebug = WwDebug.instance;
@@ -36,19 +39,19 @@ class WwSprite {
         this.log(`WwSprite: load: ${url}, ${callback}`);
 
         this.url = url;
+        this._onReadyCallback = callback;
+
         if ((this.url != null) && (this.url != "")) {
             this.url = url;
             var temp_img = new Image();
 
-            temp_img.onload = (img => {
-                //console.log(`Sprite: onLoad: ${callback}`);
-                this.img = img;
-                this.width = img.width;
-                this.height = img.height;
+            temp_img.onload = (e => {
+                console.log(`Sprite: onLoad: ${e}`);
+                this.img = temp_img;
+                this.width = temp_img.width;
+                this.height = temp_img.height;
 
-                if (callback) {
-                    callback(temp_img);
-                }
+                this.onReady();
             });
 
             temp_img.src = url;
@@ -80,8 +83,34 @@ class WwSprite {
         this.log(`onReady:  ${this.url}`);
         if (this._onReadyCallback != null)
         {
-            this._onReadyCallback(this.url);
+            this._onReadyCallback(this);
         }
+
+        this._onReadyCallback = null;
+    }
+
+    draw(context) {
+
+        if (this.img) {
+            context.drawImage(
+                this.img,
+                this.sourceX,
+                this.sourceY,
+                this.width,
+                this.height,
+                this.x,
+                this.y,
+                this.width,
+                this.height
+            );
+        } else {
+            this.fill(context);
+        }
+    }
+
+    fill(context) {
+        context.fillStyle = "#999999";
+        context.fillRect(this.x, this.y, this.width, this.height);
     }
 
 
