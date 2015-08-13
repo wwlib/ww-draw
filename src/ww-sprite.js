@@ -3,7 +3,6 @@
  */
 
 /**
- * Adds image loading, crude debugging and other generally useful functionality...
  * @author Andrew Rapo (andrew@worthwhilegames.org)
  * @license MIT
  */
@@ -14,12 +13,15 @@ class WwSprite {
         this.y = y;
         this.width = 0;
         this.height = 0;
+        this.pivotX = 0;
+        this.pivotY = 0;
+        this.scale = 1.0
 
         this.sourceX = 0;
         this.sourceY = 0;
 
-        this.img = {};
-        this.bmp = {};
+        this.img = null;
+        //this.bmp = {};
         //this.debug:WwDebug = WwDebug.instance;
         this.scaleFactor = WwSprite.BASE_SCALE_FACTOR;
         this.url = "";
@@ -32,7 +34,7 @@ class WwSprite {
     }
 
     loadImageWithURL(url) {
-        this.loadImageWithURLAndCallback(url, this.onImageLoaded);
+        this.loadImageWithURLAndCallback(url, null);
     }
 
     loadImageWithURLAndCallback(url, callback) {
@@ -60,18 +62,6 @@ class WwSprite {
         }
     }
 
-    onImageLoaded(img) {
-        this.log("onImageLoaded: "+ this.url);
-        //__bmp = event.target.content as Bitmap;
-        //removeChild(__img);
-        //__img = Image.fromBitmap(__bmp);
-        //resetScale();
-        //__img.alpha = 0.5;
-        //addChild(__img);
-        //__bmp = null;
-        this.onReady();
-    }
-
     set onReadyCallback(callback)
     {
         this._onReadyCallback = callback;
@@ -80,7 +70,7 @@ class WwSprite {
     // Override this
     onReady()
     {
-        this.log(`onReady:  ${this.url}`);
+        this.log(`WwSprite: onReady:  ${this.url}`);
         if (this._onReadyCallback != null)
         {
             this._onReadyCallback(this);
@@ -98,8 +88,8 @@ class WwSprite {
                 this.sourceY,
                 this.width,
                 this.height,
-                this.x,
-                this.y,
+                this.x - this.pivotX,
+                this.y - this.pivotY,
                 this.width,
                 this.height
             );
@@ -113,6 +103,17 @@ class WwSprite {
         context.fillRect(this.x, this.y, this.width, this.height);
     }
 
+    centerPivot() {
+        if (this.img)
+        {
+            //TODO: Assumes square image
+            let brush_size = this.width * this.scale;
+            let mid_point = brush_size / 2.0;
+
+            this.pivotX = mid_point;
+            this.pivotY = mid_point;
+        }
+    }
 
     log(msg) {
         console.log(`WwSprite: ${msg}`);

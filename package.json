@@ -2,7 +2,7 @@
   "name": "wwdraw",
   "version": "0.0.1",
   "description": "A time-based drawing library for capturing and replaying multi-layered, multi-author drawings",
-  "main": "lib/main.js",
+  "main": "index.js",
   "scripts": {
     "test": "tbd"
   },
