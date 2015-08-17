@@ -38,7 +38,7 @@ class WwSprite {
     }
 
     loadImageWithURLAndCallback(url, callback) {
-        this.log(`WwSprite: load: ${url}, ${callback}`);
+        //this.log(`WwSprite: load: ${url}`);
 
         this.url = url;
         this._onReadyCallback = callback;
@@ -48,7 +48,7 @@ class WwSprite {
             var temp_img = new Image();
 
             temp_img.onload = (e => {
-                console.log(`Sprite: onLoad: ${e}`);
+                //console.log(`Sprite: onLoad: ${e}`);
                 this.img = temp_img;
                 this.width = temp_img.width;
                 this.height = temp_img.height;
@@ -70,7 +70,7 @@ class WwSprite {
     // Override this
     onReady()
     {
-        this.log(`WwSprite: onReady:  ${this.url}`);
+        //this.log(`onReady:  ${this.url}`);
         if (this._onReadyCallback != null)
         {
             this._onReadyCallback(this);

@@ -8,7 +8,7 @@
  * @license MIT
  */
 
-import Point from './point';;
+import Point from './point';
 import getTimer from './get-timer';
 import WwBrush from './ww-brush';
 
@@ -25,7 +25,7 @@ class WwDrawingHistoryBrushCommand {
         this.executionTime = time;
         this.brushAlpha = alpha;
         this.brushRotation =rotation;
-        this.layerID = layer_id;
+        this.layerId = layer_id;
         this.generatedCommand = generated;
 
         this.unitId = null;
@@ -46,14 +46,44 @@ class WwDrawingHistoryBrushCommand {
         //__img.color = __color;
     }
 
-    get brushID()
+    brush()
     {
-        return this._brushID;
+        this._brush = WwDrawingBrushManager.instance.getBrushFromBrushId(this._brushId);
+
+        if (this._brush)
+        {
+            this._brush.brushScale = this._brushScale * this.brushExpansionFactor;
+
+            switch(this.brushBlendMode)
+            {
+                case "erase": this._brush.image.blendMode = BlendMode.ERASE;
+                    break;
+
+                case "normal": this._brush.image.blendMode = BlendMode.NORMAL;
+                    break;
+
+                default: this._brush.image.blendMode = BlendMode.NORMAL;
+                    break;
+            }
+
+            this._brush.image.color = this._color;
+            this._brush.image.rotation = this.brushRotation;
+            this._brush.image.x = this._location.x;
+            this._brush.image.y = this._location.y;
+            this._brush.image.alpha = this.brushAlpha;
+        }
+
+        return __brush;
     }
 
-    set brushID(value)
+    get brushId()
     {
-        this._brushID = value;
+        return this._brushId;
+    }
+
+    set brushId(value)
+    {
+        this._brushId = value;
     }
 
     get brush() {
@@ -108,17 +138,202 @@ class WwDrawingHistoryBrushCommand {
         result += `${this.brushAlpha}\n`;
         result += `${this.brushRotation}\n`;
         result += `${this.timeScale}\n`;
-        result += `${this.layerID}\n`;
+        result += `${this.layerId}\n`;
         result += `${this.generatedCommand}\n`;
         result += `${this._brush}\n`;
 
         return result;
     }
 
+    // Update Methods
+
+    updateBrushId(value)
+    {
+        if (value) { this.brushId = value; return value }
+        else { return this.brushId }
+    }
+
+    updateUintColor(value)
+    {
+        if (value) { this.uintColor = value; return value }
+        else { return this.uintColor }
+    }
+
+    updateUnitId(value:int):int
+    {
+        if (value) { this.unitId = value; return value }
+        else { return this.unitId }
+    }
+
+    updateLayerId(value)
+    {
+        if (value) { this.layerId = value; return value }
+        else { return this.layerId }
+    }
+
+    updateExecutionTime(value)
+    {
+        if (value != undefined) { this.executionTime = value; return value }
+        else { return this.executionTime }
+    }
+
+    updateBrushScale(value)
+    {
+        if (value) { this.brushScale = value; return value }
+        else { return this.brushScale }
+    }
+
+    updateBlendMode(value)
+    {
+        if (value) { this.brushBlendMode = value; return value }
+        else { return this.brushBlendMode }
+    }
+
+    updateBrushAlpha(value)
+    {
+        if (value) { this.brushAlpha = value; return value }
+        else { return this.brushAlpha }
+    }
+
+    updateBrushRotation(value)
+    {
+        if (value) { this.brushRotation = value; return value }
+        else { return this.brushRotation }
+    }
+
+    updateX(value)
+    {
+        if (!this._location) { this._location = new Point(0,0); }
+
+        if (value) { this._location.x = value; return value }
+        else { return this._location.x }
+    }
+
+    updateY(value)
+    {
+        if (!this._location) { this._location = new Point(0,0); }
+
+        if (value) { this._location.y = value; return value }
+        else { return this._location.y }
+    }
+
+    //Redundancy Methods
+
+    checkRedundancyOfBrushId(data_object, property, value)
+    {
+        if (value == this.brushId) { }
+        else { this.brushId = value; data_object[property] = this.brushId }
+    }
+
+    checkRedundancyOfUintColor(data_object, property, value)
+    {
+        if (value == this.uintColor) { }
+        else { this.uintColor = value; data_object[property] = this.uintColor }
+    }
+
+    checkRedundancyOfUnitId(data_object, property, value)
+    {
+        if (value == this.unitId) { }
+        else { this.unitId = value; data_object[property] = this.unitId }
+    }
+
+    checkRedundancyOfLayerId(data_object, property, value)
+    {
+        if (value == this.layerId) { }
+        else { this.layerId = value; data_object[property] = this.layerId }
+    }
+
+    checkRedundancyOfExecutionTime(data_object, property, value)
+    {
+        //always include time parameter. SAR:150619
+        if (false && value == this.executionTime) { }
+        else { this.executionTime = value; data_object[property] = this.executionTime }
+    }
+
+    checkRedundancyOfBrushScale(data_object, property, value)
+    {
+        if (value == this.brushScale) { }
+        else { this.brushScale = value; data_object[property] = this.brushScale }
+    }
+
+    checkRedundancyOfBrushBlendMode(data_object, property, value)
+    {
+        if (value == this.brushBlendMode) { }
+        else { this.brushBlendMode = value; data_object[property] = this.brushBlendMode }
+    }
+
+    checkRedundancyOfBrushAlpha(data_object, property, value)
+    {
+        if (value == this.brushAlpha) { }
+        else { this.brushAlpha = value; data_object[property] = this.brushAlpha }
+    }
+
+    checkRedundancyOfBrushRotation(data_object, property, value)
+    {
+        if (value == this.brushRotation) { }
+        else { this.brushRotation = value; data_object[property] = this.brushRotation }
+    }
+
+    checkRedundancyOfGeneratedCommand(data_object, property, value)
+    {
+        if (value == this.generatedCommand) { }
+        else { this.generatedCommand = value; data_object[property] = this.generatedCommand }
+    }
+
+    checkRedundancyOfX(data_object, property, value)
+    {
+        if (!this._location) { this._location = new Point(0,0); }
+
+        if (value == this._location.x) { }
+        else { this._location.x = value; data_object[property] = this._location.x }
+    }
+
+    checkRedundancyOfY(data_object, property, value)
+    {
+        if (!this._location) { this._location = new Point(0,0); }
+
+        if (value == this._location.y) { }
+        else { this._location.y = value; data_object[property] =  this._location.y }
+    }
+
+    static clone(_command, data_object=null)
+    {
+        var _clone = new WwDrawingHistoryBrushCommand(_command.brushId, new Point(_command.location.x, _command.location.y));
+
+        //_clone.location = new Point(_command.location.x, _command.location.y);
+        _clone.uintColor = _command.uintColor;
+        _clone.brushScale = _command.brushScale;
+        _clone.brushExpansionFactor = _command.brushExpansionFactor;
+        _clone.brushBlendMode = _command.brushBlendMode;
+        _clone.executionTime = _command.executionTime;
+        _clone.brushAlpha = _command.brushAlpha;
+        _clone.brushRotation = _command.brushRotation;
+        _clone.timeScale = _command.timeScale;
+        _clone.layerId = _command.layerId;
+        _clone.generatedCommand = _command.generatedCommand;
+        _clone.unitID = _command.unitID;
+
+        if (data_object) {
+            _clone.updateUnitId(data_object.uid);
+            _clone.updateBrushId(data_object.bid);
+            _clone.updateX(data_object.x);
+            _clone.updateY(data_object.y);
+            _clone.updateExecutionTime(data_object.t);
+            _clone.updateUintColor(data_object.c);
+            _clone.updateBrushScale(data_object.s);
+            _clone.updateBlendMode(data_object.bm);
+            _clone.updateBrushAlpha(data_object.a);
+            _clone.updateBrushRotation(data_object.r);
+            _clone.updateLayerId(data_object.lid);
+        }
+
+        return _clone;
+    }
+
     dispose()
     {
         this._brush = null;
-        this.location = null;
+        this._location = null;
     }
 }
 
