@@ -24,6 +24,8 @@ class WwDrawingHistoryUnit {
         this.startTime = 0;
         this.duration = 0;
         this.sessionId = 0;
+
+        this.currentCommandIndex = 0;
     }
 
     toString()
@@ -100,6 +102,51 @@ class WwDrawingHistoryUnit {
         json.commands = _commands;
 
         return json;
+    }
+
+    hasNext() {
+        return (this.currentCommandIndex + 1) < this.commands.length;
+    }
+
+    hasNextInTimeRange(start_time, end_time) {
+        let next_command = null;
+        let next_command_index = this.currentCommandIndex + 1;
+
+        if (next_command_index < this.commands.length) {
+            next_command =  this.commands[next_command_index];
+            let next_command_time = next_command.executionTime;
+            if (next_command_time >= start_time && next_command_time < end_time) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    next() {
+        let next_command = null;
+
+        this.currentCommandIndex++;
+        if (this.currentCommandIndex < this.commands.length) {
+            next_command = this.commands[this.currentCommandIndex];
+        }
+        return next_command;
+    }
+
+    nextInTimeRange(start_time, end_time) {
+        let next_command = null;
+        let next_command_index = this.currentCommandIndex + 1;
+
+        if (next_command_index < this.commands.length) {
+            next_command =  this.commands[next_command_index];
+            let next_command_time = next_command.executionTime;
+            if (next_command_time >= start_time && next_command_time < end_time) {
+                this.currentCommandIndex++;
+            } else {
+                next_command = null;
+            }
+        }
+        return next_command;
     }
 
 }

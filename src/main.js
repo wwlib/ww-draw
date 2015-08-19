@@ -10,6 +10,8 @@ import WwDrawingHistoryBrushCommand from './ww-drawing-history-brush-command';
 import WwDeviceInfo from './ww-device-info';
 import WwDrawingHistoryUnit from './ww-drawing-history-unit';
 import WwDrawingBrushManager from './ww-drawing-brush-manager';
+import WwDrawingHistory from './ww-drawing-history.js';
+import WwDrawingHistoryRenderer from './ww-drawing-history-renderer.js';
 
 import TestData from '../images/drw_1432296509856_base_ALL.json';
 
@@ -56,12 +58,25 @@ WwDrawingBrushManager.instance.init(onBrushesLoaded);
 
 function onBrushesLoaded(brushes) {
     console.log(`onBrushesLoaded: ${brushes}`);
-    drawing_history_unit.commands.forEach(command => {
-        test_brush.x = command.location.x;
-        test_brush.y = command.location.y;
-        test_brush.draw(ctx);
 
-    });
+    let history = new WwDrawingHistory();
+    history.addUnit(drawing_history_unit);
+    //console.log(history.toString());
+
+    let renderer = new WwDrawingHistoryRenderer(history, ctx);
+    renderer.testBrush = test_brush;
+    //renderer.renderHistory();
+    //renderer.renderHistoryWithTimeRange(0, 2000);
+    renderer.renderHistoryWithDuration(500);
+
+    let intervalId = setInterval(() => {
+        if (renderer.ended) {
+            clearInterval(intervalId);
+        }
+        else {
+            renderer.renderHistoryWithDuration(100);
+        }
+    }, 33);
 }
 
 function onSpriteImageLoaded(sprite) {

@@ -13,6 +13,62 @@ import WwDeviceInfo from './ww-device-info';
 
 class WwDrawingHistory {
     constructor() {
+        this.units = [];
+        this.startTime = 0;
+        this.duration = 0;
+    }
+
+    toString()
+    {
+        let result = "Start: " + this.startTime + ", duration: " + this.duration + ", end: " + (this.startTime + this.duration) + "\n";
+        this.units.forEach(unit => {
+            result += unit.toString();
+        });
+        return result;
+    }
+
+    addUnit(unit)
+    {
+        if (unit)
+        {
+            this.units.push(unit);
+            this.unitLineLength += unit.lineLength;
+            this.duration += unit.duration;
+        }
+        else
+        {
+            console.log(`WwDrawingHistory:addUnit: unit is null`);
+        }
+    }
+
+
+    concatAllCommands(layer = null) {
+        let unit = new WwDrawingHistoryUnit();
+
+        this.units.forEach(temp_unit => {
+            if (temp_unit) {
+                temp_unit.commands.forEach(temp_command => {
+
+                    if (this.startTime == 0) {
+                        this.startTime = temp_command.executionTime;
+                    }
+                    else {
+                        this.startTime = Math.min(this.startTime, temp_command.executionTime);
+                    }
+                    this.duration = Math.max(this.duration, temp_command.executionTime);
+                    if (layer) {
+                        if (layer == temp_command.layerID) {
+                            unit.addCommand(temp_command, false, false);//, false, false);
+                        }
+                    }
+                    else {
+                        unit.addCommand(temp_command, false, false);//, false, false);
+                    }
+                });
+            }
+        });
+
+        return unit;
     }
 }
 
@@ -120,7 +176,7 @@ public class WwDrawingHistory
         return result;
     }
 
-    public function concatAllCommands(_layer:String=null):WwDrawingHistoryUnit
+    public function concatAllCommands(layer:String=null):WwDrawingHistoryUnit
     {
         var _unit:WwDrawingHistoryUnit = new WwDrawingHistoryUnit();
 
