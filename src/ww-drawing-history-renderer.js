@@ -2,6 +2,11 @@
  * Created by andrew on 8/13/15.
  */
 
+//import WwDrawingBrushManager from './ww-drawing-brush-manager';
+
+import WwDrawingHistoryBrushCommand from './ww-drawing-history-brush-command';
+import Point from './point.js';
+
 class WwDrawingHistoryRenderer {
     constructor(history, context, start_time=0, end_time=0) {
         this.history = history;
@@ -13,21 +18,34 @@ class WwDrawingHistoryRenderer {
         this.mergedCommandsUnit = this.history.concatAllCommands();
     }
 
-    set testBrush(brush) {
-        this.brush = brush;
-    }
-
     get ended() {
         return !this.mergedCommandsUnit.hasNext();
     }
 
     renderCommand(command) {
-        if (this.brush) {
-            this.brush.x = command.location.x;
-            this.brush.y = command.location.y;
-            this.brush.draw(this.context);
-        } else {
-            console.log(`renderCommand: brush is undefined`);
+
+        if (command.prevCommand) {
+            let draw_distance = command.lineLength - command.prevCommand.lineLength;
+            let draw_steps = (draw_distance / 2.0) + 1.0;
+
+            for (let i = draw_steps; i > 0; i--) {
+                let interpolationFactor = i / draw_steps;
+
+                let temp_command = WwDrawingHistoryBrushCommand.clone(command);
+                let temp_point = Point.interpolate(command.prevCommand.location, command.location, interpolationFactor);
+                console.log(`Interpoalting: step: ${i} / ${draw_steps}: ${interpolationFactor} -> ${temp_point.toString()}`);
+                temp_command.location = temp_point;
+                temp_command.generatedCommand = true;
+                this.brush = temp_command.brush;
+                if (this.brush) {
+                    this.brush.draw(this.context);
+                }
+            }
+        } else { //DOT
+            this.brush = command.brush; //WwDrawingBrushManager.instance.getBrushFromBrushId(command.brushId);
+            if (this.brush) {
+                this.brush.draw(this.context);
+            }
         }
     }
 

@@ -44,17 +44,20 @@ class WwDrawingHistory {
 
     concatAllCommands(layer = null) {
         let unit = new WwDrawingHistoryUnit();
+        let unit_start_time_offset = 0;
 
         this.units.forEach(temp_unit => {
             if (temp_unit) {
                 temp_unit.commands.forEach(temp_command => {
-
+                    /*
                     if (this.startTime == 0) {
                         this.startTime = temp_command.executionTime;
                     }
                     else {
                         this.startTime = Math.min(this.startTime, temp_command.executionTime);
                     }
+                    */
+                    temp_command.executionTime += unit_start_time_offset;
                     this.duration = Math.max(this.duration, temp_command.executionTime);
                     if (layer) {
                         if (layer == temp_command.layerID) {
@@ -65,6 +68,7 @@ class WwDrawingHistory {
                         unit.addCommand(temp_command, false, false);//, false, false);
                     }
                 });
+                unit_start_time_offset += temp_unit.duration;
             }
         });
 

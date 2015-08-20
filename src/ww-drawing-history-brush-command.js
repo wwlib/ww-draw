@@ -11,6 +11,7 @@
 import Point from './point';
 import getTimer from './get-timer';
 import WwBrush from './ww-brush';
+import WwDrawingBrushManager from './ww-drawing-brush-manager';
 
 
 class WwDrawingHistoryBrushCommand {
@@ -27,6 +28,10 @@ class WwDrawingHistoryBrushCommand {
         this.brushRotation =rotation;
         this.layerId = layer_id;
         this.generatedCommand = generated;
+
+        this.lineLength = 0; //the line length up to this point, from the start of the unit
+        this.prevCommand = null;
+        this.rendered = false;
 
         this.unitId = null;
         this.timeScale = 1.0;
@@ -46,14 +51,15 @@ class WwDrawingHistoryBrushCommand {
         //__img.color = __color;
     }
 
-    brush()
+    get brush()
     {
         this._brush = WwDrawingBrushManager.instance.getBrushFromBrushId(this._brushId);
 
         if (this._brush)
         {
-            this._brush.brushScale = this._brushScale * this.brushExpansionFactor;
+            this._brush.scale = this._brushScale * this.brushExpansionFactor;
 
+            /*
             switch(this.brushBlendMode)
             {
                 case "erase": this._brush.image.blendMode = BlendMode.ERASE;
@@ -65,15 +71,16 @@ class WwDrawingHistoryBrushCommand {
                 default: this._brush.image.blendMode = BlendMode.NORMAL;
                     break;
             }
+            */
 
-            this._brush.image.color = this._color;
-            this._brush.image.rotation = this.brushRotation;
-            this._brush.image.x = this._location.x;
-            this._brush.image.y = this._location.y;
-            this._brush.image.alpha = this.brushAlpha;
+            this._brush.color = this._color;
+            this._brush.rotation = this.brushRotation;
+            this._brush.x = this._location.x;
+            this._brush.y = this._location.y;
+            this._brush.alpha = this.brushAlpha;
         }
 
-        return __brush;
+        return this._brush;
     }
 
     get brushId()
@@ -84,14 +91,6 @@ class WwDrawingHistoryBrushCommand {
     set brushId(value)
     {
         this._brushId = value;
-    }
-
-    get brush() {
-        return this._brush;
-    }
-
-    set brush(value) {
-        this._brush = value;
     }
 
     get location()

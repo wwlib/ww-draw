@@ -14,6 +14,7 @@ import WwDrawingHistory from './ww-drawing-history.js';
 import WwDrawingHistoryRenderer from './ww-drawing-history-renderer.js';
 
 import TestData from '../images/drw_1432296509856_base_ALL.json';
+import TestData2 from '../images/drw_1436449296516_base_ALL.json';
 
 
 let canvas = document.getElementById("test-canvas");
@@ -57,26 +58,42 @@ console.log(drawing_history_unit.toString());
 WwDrawingBrushManager.instance.init(onBrushesLoaded);
 
 function onBrushesLoaded(brushes) {
-    console.log(`onBrushesLoaded: ${brushes}`);
+    console.log(`onBrushesLoaded:`);
+    console.log(brushes);
 
     let history = new WwDrawingHistory();
-    history.addUnit(drawing_history_unit);
+    let base_command = new WwDrawingHistoryBrushCommand('hard', new Point(0,0));
+
+    TestData2.units.forEach(unit_data => {
+        let unit = new WwDrawingHistoryUnit();
+
+        unit_data.commands.forEach(command_data => {
+            let command = WwDrawingHistoryBrushCommand.clone(base_command, command_data);
+            unit.addCommand(command);
+            base_command = command;
+        });
+        history.addUnit(unit);
+    });
+    //history.addUnit(drawing_history_unit);
     //console.log(history.toString());
 
     let renderer = new WwDrawingHistoryRenderer(history, ctx);
-    renderer.testBrush = test_brush;
     //renderer.renderHistory();
     //renderer.renderHistoryWithTimeRange(0, 2000);
-    renderer.renderHistoryWithDuration(500);
+
+
+    //renderer.renderHistoryWithDuration(500);
+
 
     let intervalId = setInterval(() => {
         if (renderer.ended) {
             clearInterval(intervalId);
         }
         else {
-            renderer.renderHistoryWithDuration(100);
+            renderer.renderHistoryWithDuration(33);
         }
     }, 33);
+
 }
 
 function onSpriteImageLoaded(sprite) {

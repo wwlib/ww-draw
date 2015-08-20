@@ -20,6 +20,12 @@ class Point {
 
         return diff.magnitude;
     }
+
+    static interpolate(point1, point2, factor) {
+            let dx = point1.x + (point2.x - point1.x) * factor;
+            let dy = point1.y + (point2.y - point1.y) * factor;
+            return new Point(dx, dy);
+    }
 }
 
 export default Point;

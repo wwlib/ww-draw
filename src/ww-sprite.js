@@ -15,14 +15,14 @@ class WwSprite {
         this.height = 0;
         this.pivotX = 0;
         this.pivotY = 0;
-        this.scale = 1.0
+        this.scale = 1.0;
+        this.rotation = 0;
+        this.alpha = 1.0;
 
         this.sourceX = 0;
         this.sourceY = 0;
 
         this.img = null;
-        //this.bmp = {};
-        //this.debug:WwDebug = WwDebug.instance;
         this.scaleFactor = WwSprite.BASE_SCALE_FACTOR;
         this.url = "";
 
@@ -88,10 +88,10 @@ class WwSprite {
                 this.sourceY,
                 this.width,
                 this.height,
-                this.x - this.pivotX,
-                this.y - this.pivotY,
-                this.width,
-                this.height
+                this.x - (this.pivotX  * this.scale),
+                this.y - (this.pivotY  * this.scale),
+                this.width * this.scale,
+                this.height * this.scale
             );
         } else {
             this.fill(context);
