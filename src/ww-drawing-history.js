@@ -60,7 +60,8 @@ class WwDrawingHistory {
                     temp_command.executionTime += unit_start_time_offset;
                     this.duration = Math.max(this.duration, temp_command.executionTime);
                     if (layer) {
-                        if (layer == temp_command.layerID) {
+                        if (layer == temp_command.layerId) {
+                            //console.log(` add: ${temp_unit.id}: ${temp_command.executionTime}`);
                             unit.addCommand(temp_command, false, false);//, false, false);
                         }
                     }

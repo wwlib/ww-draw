@@ -37,8 +37,8 @@ class WwDrawingHistoryBrushCommand {
         this.timeScale = 1.0;
         this._brush = null;
 
-        if (this.executionTime == null) {
-            this.executionTime = getTimer();
+        if (this.executionTime === null) {
+            this.executionTime = 0; //getTimer();
         }
         this.normalizedExecutionTime = this.executionTime;
     }
@@ -144,6 +144,11 @@ class WwDrawingHistoryBrushCommand {
         return result;
     }
 
+    toStringMin() {
+
+        return `Cmd: ${this.unitId}: ${this.layerId}: ${this.executionTime}`;
+    }
+
     // Update Methods
 
     updateBrushId(value)
@@ -158,7 +163,7 @@ class WwDrawingHistoryBrushCommand {
         else { return this.uintColor }
     }
 
-    updateUnitId(value:int):int
+    updateUnitId(value)
     {
         if (value) { this.unitId = value; return value }
         else { return this.unitId }
@@ -310,7 +315,7 @@ class WwDrawingHistoryBrushCommand {
         _clone.timeScale = _command.timeScale;
         _clone.layerId = _command.layerId;
         _clone.generatedCommand = _command.generatedCommand;
-        _clone.unitID = _command.unitID;
+        _clone.unitId = _command.unitId;
 
         if (data_object) {
             _clone.updateUnitId(data_object.uid);

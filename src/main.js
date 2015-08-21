@@ -14,7 +14,7 @@ import WwDrawingHistory from './ww-drawing-history.js';
 import WwDrawingHistoryRenderer from './ww-drawing-history-renderer.js';
 
 import TestData from '../images/drw_1432296509856_base_ALL.json';
-import TestData2 from '../images/drw_1436449296516_base_ALL.json';
+import TestData2 from '../images/drw_1432293328691_base_ALL.json';
 
 
 let canvas = document.getElementById("test-canvas");
@@ -53,7 +53,7 @@ test_commands.forEach(data_object => {
     drawing_history_unit.addCommand(command);
     base_command = command;
 });
-console.log(drawing_history_unit.toString());
+//console.log(drawing_history_unit.toString());
 
 WwDrawingBrushManager.instance.init(onBrushesLoaded);
 
@@ -66,9 +66,18 @@ function onBrushesLoaded(brushes) {
 
     TestData2.units.forEach(unit_data => {
         let unit = new WwDrawingHistoryUnit();
+        unit.layerId = unit_data.lid;
+        unit.sessionId = unit_data.ses;
+        unit.startTime = unit_data.start;
+        unit.id = unit_data.id;
+
 
         unit_data.commands.forEach(command_data => {
+            if (!command_data.t) {
+                command_data.t = 0;
+            }
             let command = WwDrawingHistoryBrushCommand.clone(base_command, command_data);
+            //console.log(command.toStringMin());
             unit.addCommand(command);
             base_command = command;
         });

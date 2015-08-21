@@ -33,7 +33,6 @@ class WwDrawingHistoryRenderer {
 
                 let temp_command = WwDrawingHistoryBrushCommand.clone(command);
                 let temp_point = Point.interpolate(command.prevCommand.location, command.location, interpolationFactor);
-                console.log(`Interpoalting: step: ${i} / ${draw_steps}: ${interpolationFactor} -> ${temp_point.toString()}`);
                 temp_command.location = temp_point;
                 temp_command.generatedCommand = true;
                 this.brush = temp_command.brush;
