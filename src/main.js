@@ -3,6 +3,7 @@
  */
 
 import Point from './point';
+import Rect from './rect';
 import getTimer from './get-timer';
 import WwSprite from './ww-sprite';
 import WwBrush from './ww-brush';
@@ -10,16 +11,19 @@ import WwDrawingHistoryBrushCommand from './ww-drawing-history-brush-command';
 import WwDeviceInfo from './ww-device-info';
 import WwDrawingHistoryUnit from './ww-drawing-history-unit';
 import WwDrawingBrushManager from './ww-drawing-brush-manager';
-import WwDrawingHistory from './ww-drawing-history.js';
-import WwDrawingHistoryRenderer from './ww-drawing-history-renderer.js';
+import WwDrawingHistory from './ww-drawing-history';
+import WwDrawingHistoryRenderer from './ww-drawing-history-renderer';
+import WwDrawingHistoryLoader from './ww-drawing-history-loader';
 
 import TestData from '../images/drw_1432296509856_base_ALL.json';
-import TestData2 from '../images/drw_1432293328691_base_ALL.json';
+import TestData2 from '../images/drw_1440163114487_base_ALL.json';
 
 
 let canvas = document.getElementById("test-canvas");
 let ctx = canvas.getContext("2d");
 ctx.clearRect(0, 0, canvas.width, canvas.height);
+//ctx.fillStyle = "#0000ff";
+//ctx.fillRect(10, 10, 100, 100);
 
 console.log(`getTimer: ${getTimer()}`);
 console.log(`point: ${new Point().toString()}`);
@@ -27,6 +31,10 @@ console.log(`point: ${new Point().toString()}`);
 let test_sprite = new WwSprite(1, 2);
 console.log(`WwSprite: ${test_sprite}`);
 test_sprite.loadImageWithURLAndCallback('./images/player.png', onSpriteImageLoaded);
+
+let eye_sprite = new WwSprite(0, 0);
+console.log(`WwSprite: ${eye_sprite}`);
+eye_sprite.loadImageWithURLAndCallback('./images/eye_500.png', onEyeImageLoaded);
 
 let test_brush = new WwBrush();
 console.log(`WwBrush: ${test_brush}`);
@@ -61,6 +69,7 @@ function onBrushesLoaded(brushes) {
     console.log(`onBrushesLoaded:`);
     console.log(brushes);
 
+    /*
     let history = new WwDrawingHistory();
     let base_command = new WwDrawingHistoryBrushCommand('hard', new Point(0,0));
 
@@ -85,8 +94,14 @@ function onBrushesLoaded(brushes) {
     });
     //history.addUnit(drawing_history_unit);
     //console.log(history.toString());
+    */
 
-    let renderer = new WwDrawingHistoryRenderer(history, ctx);
+    let historyLoader = new WwDrawingHistoryLoader();
+    historyLoader.parseDrawingData(TestData2);
+
+    let render_rect = new Rect(110, 390, 500, 500);
+
+    let renderer = new WwDrawingHistoryRenderer(historyLoader.history, ctx, render_rect, true, 0.8);
     //renderer.renderHistory();
     //renderer.renderHistoryWithTimeRange(0, 2000);
 
@@ -99,7 +114,7 @@ function onBrushesLoaded(brushes) {
             clearInterval(intervalId);
         }
         else {
-            renderer.renderHistoryWithDuration(33);
+            renderer.renderHistoryWithDuration(99);
         }
     }, 33);
 
@@ -107,12 +122,19 @@ function onBrushesLoaded(brushes) {
 
 function onSpriteImageLoaded(sprite) {
     console.log(`onSpriteImageLoaded: ${sprite}`);
+    //sprite.draw(ctx);
+}
+
+function onEyeImageLoaded(sprite) {
+    console.log(`onEyeImageLoaded: ${sprite}`);
+    sprite.x = 390;
+    sprite.y = 110;
     sprite.draw(ctx);
 }
 
 function onBrushImageLoaded(brush) {
     console.log(`onBrushImageLoaded: ${brush}`);
-    brush.draw(ctx);
+    //brush.draw(ctx);
 }
 
 

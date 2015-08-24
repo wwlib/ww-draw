@@ -10,12 +10,14 @@
 
 import WwDrawingHistoryUnit from'./ww-drawing-history-unit';
 import WwDeviceInfo from './ww-device-info';
+import Rect from './rect';
 
 class WwDrawingHistory {
     constructor() {
         this.units = [];
         this.startTime = 0;
         this.duration = 0;
+        this.boundingRect = null;
     }
 
     toString()
@@ -32,6 +34,11 @@ class WwDrawingHistory {
         if (unit)
         {
             this.units.push(unit);
+            if (!this.boundingRect) {
+                this.boundingRect = unit.boundingRect;
+            } else {
+                this.boundingRect.expandToIncludeRect(unit.boundingRect);
+            }
             this.unitLineLength += unit.lineLength;
             this.duration += unit.duration;
         }

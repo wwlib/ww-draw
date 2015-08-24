@@ -28,6 +28,8 @@ class WwDrawingHistoryBrushCommand {
         this.brushRotation =rotation;
         this.layerId = layer_id;
         this.generatedCommand = generated;
+        this.offset = new Point();
+        this.scale = 1.0;
 
         this.lineLength = 0; //the line length up to this point, from the start of the unit
         this.prevCommand = null;
@@ -57,7 +59,7 @@ class WwDrawingHistoryBrushCommand {
 
         if (this._brush)
         {
-            this._brush.scale = this._brushScale * this.brushExpansionFactor;
+            this._brush.scale = this._brushScale * this.brushExpansionFactor * this.scale;
 
             /*
             switch(this.brushBlendMode)
@@ -75,8 +77,8 @@ class WwDrawingHistoryBrushCommand {
 
             this._brush.color = this._color;
             this._brush.rotation = this.brushRotation;
-            this._brush.x = this._location.x;
-            this._brush.y = this._location.y;
+            this._brush.x = this._location.x * this.scale + this.offset.x;
+            this._brush.y = this._location.y * this.scale + this.offset.y;
             this._brush.alpha = this.brushAlpha;
         }
 
@@ -316,6 +318,8 @@ class WwDrawingHistoryBrushCommand {
         _clone.layerId = _command.layerId;
         _clone.generatedCommand = _command.generatedCommand;
         _clone.unitId = _command.unitId;
+        _clone.offset = _command.offset;
+        _clone.scale = _command.scale;
 
         if (data_object) {
             _clone.updateUnitId(data_object.uid);

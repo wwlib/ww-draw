@@ -42,7 +42,7 @@ class WwDrawingBrushManager {
         this.brushIdArray[5] = "circleSoft";
         this.brushIdArray[6] = "star";
 
-        this.brushURLs["hard"] = "./images/brushes/brush_hard.png";
+        this.brushURLs["hard"] = "./images/brushes/brush_hard_blue.png";
         this.brushURLs["soft"] = "./images/brushes/brush_soft.png";
         this.brushURLs["crayon"] = "./images/brushes/brush_crayon.png";
         this.brushURLs["calligraphy"] = "./images/brushes/brush_calligraphy.png";

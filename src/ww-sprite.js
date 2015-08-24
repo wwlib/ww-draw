@@ -82,6 +82,7 @@ class WwSprite {
     draw(context) {
 
         if (this.img) {
+            context.globalAlpha = this.alpha;
             context.drawImage(
                 this.img,
                 this.sourceX,

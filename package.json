@@ -1,5 +1,5 @@
 {
-  "name": "wwdraw",
+  "name": "ww-draw",
   "version": "0.0.1",
   "description": "A time-based drawing library for capturing and replaying multi-layered, multi-author drawings",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/wwlib/wwdraw.git"
+    "url": "git+ssh://git@github.com/wwlib/ww-draw.git"
   },
   "devDependencies": {
     "gulp": "^3.8.11",
@@ -24,7 +24,7 @@
   "author": "Andrew Rapo",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/wwlib/wwdraw/issues"
+    "url": "https://github.com/wwlib/ww-draw/issues"
   },
-  "homepage": "https://github.com/wwlib/wwdraw#readme"
+  "homepage": "https://github.com/wwlib/ww-draw#readme"
 }

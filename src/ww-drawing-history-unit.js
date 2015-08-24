@@ -9,6 +9,7 @@
  */
 
 import Point from './point';
+import Rect from './rect';
 import getTimer from './get-timer';
 import WwDrawingHistoryDataTranslator from './ww-drawing-history-data-translator';
 
@@ -26,11 +27,19 @@ class WwDrawingHistoryUnit {
         this.sessionId = 0;
 
         this.currentCommandIndex = 0;
+        this.boundingRect = null;
+
+        // minX: redundant. for troubleshooting boundingRect issue. should be removed.
+        //this.minX = 0;
+        //this.maxX = 0;
+        //this.minY = 0;
+        //this.maxY = 0;
     }
 
     toString()
     {
         var result:String = " Unit: " + this.id + ": start: " + this.startTime + ", duration: " + this.duration + ", end: " + (this.startTime + this.duration) + "\n";
+        //result += `  ${this.minX}, ${this.maxX}, ${this.minY}, ${this.maxY}\n`;
         this.commands.forEach(temp_command => {
             result += `  Command: ${temp_command.unitId}: ${temp_command.executionTime} (${temp_command.location.x}, ${temp_command.location.y})\n`;
         });
@@ -41,6 +50,8 @@ class WwDrawingHistoryUnit {
     {
 
         this.commands.push(_command);
+        this.updateBoundingRect(_command);
+
         if (this.prevCommand)
         {
             this.lineLength += Point.distance(this.prevCommand.location, _command.location);
@@ -66,6 +77,35 @@ class WwDrawingHistoryUnit {
         }
 
         this.duration = Math.max(this.duration, _command.executionTime);
+    }
+
+    shiftOriginToMinXY() {
+        this.commands.forEach(command => {
+            command.location.x -= this.boundingRect.left; //this.minX;
+            command.location.y -= this.boundingRect.top; //this.minY;
+        });
+    }
+
+    resetBoundingRect() {
+        this.boundingRect = null;
+        this.commands.forEach(command => {
+            this.updateBoundingRect(command);
+        });
+    }
+
+    updateBoundingRect(command) {
+        if (!this.boundingRect) {
+            this.boundingRect = new Rect(command.location.y, command.location.x, 0, 0);
+            //this.minX = this.maxX = command.location.x;
+            //this.minY = this.maxY = command.location.y;
+            console.log(`  init boundingRect: ${this.boundingRect.toString()}`);
+        } else {
+            this.boundingRect.expandToIncludePoint(command.location);
+            //this.minX = Math.min(this.minX, command.location.x);
+            //this.maxX = Math.max(this.maxX, command.location.x);
+            //this.minY = Math.min(this.minY, command.location.y);
+            //this.maxY = Math.max(this.maxY, command.location.y);
+        }
     }
 
     sortComandsByExecutionTime()
