@@ -21,7 +21,7 @@
   "keywords": [
     "drawing"
   ],
-  "author": "Andrew Rapo",
+  "author": "Andrew Rapo <andrew@worthwhilegames.org> (http://worthwhilegames.org/)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/wwlib/ww-draw/issues"
