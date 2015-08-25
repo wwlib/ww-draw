@@ -1,5 +1,5 @@
 /**
- * Created by andrew on 4/14/15.
+ * Created by andrew rapo (andrew@worthwhilegames.org) on 4/14/15.
  */
 
 import Point from './point';

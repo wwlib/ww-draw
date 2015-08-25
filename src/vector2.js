@@ -1,5 +1,5 @@
 /**
- * Created by andrew on 6/3/15.
+ * Created by andrew rapo (andrew@worthwhilegames.org) on 6/3/15.
  */
 
 class Vector2 {

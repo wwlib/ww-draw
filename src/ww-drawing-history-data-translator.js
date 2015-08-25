@@ -1,5 +1,5 @@
 /**
- * Created by andrew on 8/13/15.
+ * Created by andrew rapo (andrew@worthwhilegames.org) on 8/13/15.
  */
 
 import WwDrawingHistoryBrushCommand from './ww-drawing-history-brush-command';

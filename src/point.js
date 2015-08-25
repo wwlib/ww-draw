@@ -1,5 +1,5 @@
 /**
- * Created by andrew on 7/7/15.
+ * Created by andrew rapo (andrew@worthwhilegames.org) on 7/7/15.
  */
 
 import Vector2 from './vector2';

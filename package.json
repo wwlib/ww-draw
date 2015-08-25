@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/wwlib/ww-draw.git"
+    "url": "git+ssh://git@github.com:wwlib/ww-draw.git"
   },
   "devDependencies": {
     "gulp": "^3.8.11",

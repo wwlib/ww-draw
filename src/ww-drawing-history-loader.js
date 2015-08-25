@@ -1,5 +1,5 @@
 /**
- * Created by andrew on 8/24/15.
+ * Created by andrew rapo (andrew@worthwhilegames.org) on 8/24/15.
  */
 
 import WwDrawingHistory from './ww-drawing-history';
