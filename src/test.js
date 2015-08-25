@@ -28,9 +28,9 @@ let test_sprite = new WwSprite(1, 2);
 console.log(`WwSprite: ${test_sprite}`);
 test_sprite.loadImageWithURLAndCallback('./images/player.png', onSpriteImageLoaded);
 
-let eye_sprite = new WwSprite(0, 0);
-console.log(`WwSprite: ${eye_sprite}`);
-eye_sprite.loadImageWithURLAndCallback('./images/eye_500.png', onEyeImageLoaded);
+let bg_sprite = new WwSprite(0, 0);
+console.log(`WwSprite: ${bg_sprite}`);
+bg_sprite.loadImageWithURLAndCallback('./images/bg_500.png', onEyeImageLoaded);
 
 let test_brush = new WwBrush();
 console.log(`WwBrush: ${test_brush}`);
