@@ -2,8 +2,6 @@
  * Created by andrew on 8/13/15.
  */
 
-//import WwDrawingBrushManager from './ww-drawing-brush-manager';
-
 import WwDrawingHistoryBrushCommand from './ww-drawing-history-brush-command';
 import Point from './point.js';
 import Rect from './rect';
@@ -30,7 +28,7 @@ class WwDrawingHistoryRenderer {
 
         console.log(`history bounds: ${this.history.boundingRect.toString()}`);
         console.log(`merged unit bounds: ${this.mergedCommandsUnit.boundingRect.toString()}`);
-        console.log(`${this.mergedCommandsUnit.toString()}`);
+        //console.log(`${this.mergedCommandsUnit.toString()}`);
 
         if (scale) {
             this.scale = scale;
@@ -72,11 +70,6 @@ class WwDrawingHistoryRenderer {
         console.log(` bounding rect: ${this.boundingRect.toString()}`);
         console.log(` merged unit bounding rect: ${this.mergedCommandsUnit.boundingRect.toString()}`);
         console.log(` offset: ${this.offset.toString()}`);
-
-        //this.context.fillStyle = "#999999";
-        //this.context.fillRect(this.boundingRect.left, this.boundingRect.top, this.boundingRect.width, this.boundingRect.height);
-        //this.context.fillStyle = "#888888";
-        //this.context.fillRect(this.mergedCommandsUnit.boundingRect.left, this.mergedCommandsUnit.boundingRect.top, this.mergedCommandsUnit.boundingRect.width, this.mergedCommandsUnit.boundingRect.height);
 
     }
 
