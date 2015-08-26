@@ -23,8 +23,10 @@ class WwDrawingHistoryRenderer {
         this.time = this.startTime;
 
         this.mergedCommandsUnit = this.history.concatAllCommands();
-        this.mergedCommandsUnit.shiftOriginToMinXY();
-        this.mergedCommandsUnit.resetBoundingRect();
+        if (this.boundingRect) {
+            this.mergedCommandsUnit.shiftOriginToMinXY();
+            this.mergedCommandsUnit.resetBoundingRect();
+        }
 
         console.log(`history bounds: ${this.history.boundingRect.toString()}`);
         console.log(`merged unit bounds: ${this.mergedCommandsUnit.boundingRect.toString()}`);
@@ -33,6 +35,7 @@ class WwDrawingHistoryRenderer {
         if (scale) {
             this.scale = scale;
         } else {
+            this.scale = 1.0;
             if (this.boundingRect) {
                 if (this.mergedCommandsUnit.boundingRect.width > this.mergedCommandsUnit.boundingRect.height) {
                     if (this.boundingRect.width < this.mergedCommandsUnit.boundingRect.width) {
@@ -43,10 +46,9 @@ class WwDrawingHistoryRenderer {
                         this.scale = this.boundingRect.height / this.mergedCommandsUnit.boundingRect.height;
                     }
                 }
-            } else {
-                this.scale = 1.0;
             }
         }
+        console.log(` scale: ${this.scale}`);
 
         this.offset = new Point();
 
@@ -66,8 +68,9 @@ class WwDrawingHistoryRenderer {
             }
         }
 
-
-        console.log(` bounding rect: ${this.boundingRect.toString()}`);
+        if (this.boundingRect) {
+            console.log(` bounding rect: ${this.boundingRect.toString()}`);
+        }
         console.log(` merged unit bounding rect: ${this.mergedCommandsUnit.boundingRect.toString()}`);
         console.log(` offset: ${this.offset.toString()}`);
 
