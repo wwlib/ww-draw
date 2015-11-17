@@ -26,9 +26,11 @@ class WwDrawingBrushManager {
         return WwDrawingBrushManager._instance;
     }
 
-    init(callback=null)
+    init(callback=null, mode='canvas')
     {
+        console.log(`WwDrawingBrushManager: mode == ${mode}`);
         this.callback = callback;
+        this.mode = mode;
         this.brushIdArray = [];
         this.brushURLs = {};
         this.brushes = {};
@@ -60,7 +62,7 @@ class WwDrawingBrushManager {
         */
 
         for (let _key in this.brushURLs) {
-            let _brush = new WwBrush();
+            let _brush = new WwBrush(this.mode);
             let onBrushImageLoadedCallback = this.onBrushImageLoaded.bind(this);
             _brush.loadImageWithURLAndCallback(this.brushURLs[_key], onBrushImageLoadedCallback);
             this.brushes[_key] = _brush;

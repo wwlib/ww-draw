@@ -8,9 +8,10 @@
  */
 
 class WwSprite {
-    constructor(x = 0, y = 0) {
+    constructor(x = 0, y = 0, mode='canvas') {
         this.x = x;
         this.y = y;
+        this.mode = mode;
         this.width = 0;
         this.height = 0;
         this.pivotX = 0;
@@ -23,6 +24,7 @@ class WwSprite {
         this.sourceY = 0;
 
         this.img = null;
+        this.pixijsSprite = null;
         this.scaleFactor = WwSprite.BASE_SCALE_FACTOR;
         this.url = "";
 
@@ -30,7 +32,7 @@ class WwSprite {
     }
 
     toString() {
-        return `WwSprite: (${this.x}, ${this.y}): url: ${this.url}`;
+        return `WwSprite: (${this.x}, ${this.y}): url: ${this.url}, mode: ${this.mode}`;
     }
 
     loadImageWithURL(url) {
@@ -45,18 +47,37 @@ class WwSprite {
 
         if ((this.url != null) && (this.url != "")) {
             this.url = url;
-            var temp_img = new Image();
 
-            temp_img.onload = (e => {
-                //console.log(`Sprite: onLoad: ${e}`);
-                this.img = temp_img;
-                this.width = temp_img.width;
-                this.height = temp_img.height;
+            if (this.mode === 'canvas') {
+                var temp_img = new Image();
 
-                this.onReady();
-            });
+                temp_img.onload = (e => {
+                    //console.log(`Sprite: onLoad: ${e}`);
+                    this.img = temp_img;
+                    this.width = temp_img.width;
+                    this.height = temp_img.height;
 
-            temp_img.src = url;
+                    this.onReady();
+                });
+
+                temp_img.src = url;
+            } else if (this.mode === 'pixijs') {
+                if (!PIXI) {
+                    console.log(`WwSprite: loadImageWithURLAndCallback: PIXI must be defined in 'pixijs' mode!`);
+                } else {
+                    let loader = new PIXI.loaders.Loader()
+                        .add(url)
+                        .once('complete', (loader, resources) =>
+                        {
+                            //console.log(`Load complete:`);
+                            //console.log(this);
+                            //console.log(resources);
+                            this.pixijsSprite = PIXI.Sprite.fromImage(this.url);
+                            this.onReady();
+                        })
+                        .load();
+                }
+            }
         } else {
             this.onReady();
         }
@@ -81,21 +102,41 @@ class WwSprite {
 
     draw(context) {
 
-        if (this.img) {
-            context.globalAlpha = this.alpha;
-            context.drawImage(
-                this.img,
-                this.sourceX,
-                this.sourceY,
-                this.width,
-                this.height,
-                this.x - (this.pivotX  * this.scale),
-                this.y - (this.pivotY  * this.scale),
-                this.width * this.scale,
-                this.height * this.scale
-            );
-        } else {
-            this.fill(context);
+        if (this.mode === 'canvas') {
+
+            if (this.img) {
+                context.globalAlpha = this.alpha;
+                context.drawImage(
+                    this.img,
+                    this.sourceX,
+                    this.sourceY,
+                    this.width,
+                    this.height,
+                    this.x - (this.pivotX * this.scale),
+                    this.y - (this.pivotY * this.scale),
+                    this.width * this.scale,
+                    this.height * this.scale
+                );
+            } else {
+                this.fill(context);
+            }
+        } else if (this.mode === 'pixijs') {
+            if (!PIXI) {
+                console.log(`WwSprite: draw: PIXI must be defined in 'pixijs' mode!`);
+            } else {
+                //console.log(`WwSprite: pixijs: draw: ${this.x}, ${this.y}`);
+
+                this.pixijsSprite.x = this.x;
+                this.pixijsSprite.y = this.y;
+                this.pixijsSprite.scale.x = this.scale;
+                this.pixijsSprite.scale.y = this.scale;
+                this.pixijsSprite.anchor.x = 0.5;
+                this.pixijsSprite.anchor.y = 0.5;
+
+                let container = new PIXI.Container();
+                container.addChild(this.pixijsSprite);
+                context.render(container);
+            }
         }
     }
 

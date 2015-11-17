@@ -1,5 +1,9 @@
 wwdraw - a time-based drawing replay library
 
-Note: To run test instantiations, use:
+Note: To run a canvas-based test instantiation, use:
 
 electron index.js
+
+Note: To run a pixijs-based test instantiation, use:
+
+electron index-pixijs.js

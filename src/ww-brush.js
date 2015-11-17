@@ -11,8 +11,8 @@
 import WwSprite from './ww-sprite';
 
 class WwBrush extends WwSprite {
-    constructor() {
-        super();
+    constructor(mode='canvas') {
+        super(0, 0, mode);
         this.color = null;
     }
 
