@@ -98,7 +98,7 @@ class WwDrawingHistoryUnit {
             this.boundingRect = new Rect(command.location.y, command.location.x, 0, 0);
             //this.minX = this.maxX = command.location.x;
             //this.minY = this.maxY = command.location.y;
-            console.log(`  init boundingRect: ${this.boundingRect.toString()}`);
+            //console.log(`  init boundingRect: ${this.boundingRect.toString()}`);
         } else {
             this.boundingRect.expandToIncludePoint(command.location);
             //this.minX = Math.min(this.minX, command.location.x);
