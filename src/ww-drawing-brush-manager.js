@@ -65,13 +65,13 @@ class WwDrawingBrushManager {
                     let id = parts[0];
                     this.brushIdArray.push(id);
                     this.brushURLs[id] = path + brush_filename;
-                    console.log(this.brushURLs[id]);
+                    //console.log(this.brushURLs[id]);
                 });
             }
         }
 
-        console.log(this.brushURLs);
-        console.log(this.brushIdArray);
+        //console.log(this.brushURLs);
+        //console.log(this.brushIdArray);
         /*
         this.brushURLs.forEach(_key => {
             let _brush = new WwBrush();

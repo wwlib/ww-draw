@@ -28,23 +28,27 @@ class WwDrawingHistoryRenderer {
             this.mergedCommandsUnit.resetBoundingRect();
         }
 
-        console.log(`history bounds: ${this.history.boundingRect.toString()}`);
-        console.log(`merged unit bounds: ${this.mergedCommandsUnit.boundingRect.toString()}`);
+        //console.log(`history bounds: ${this.history.boundingRect.toString()}`);
+        //console.log(`merged unit bounds: ${this.mergedCommandsUnit.boundingRect.toString()}`);
         //console.log(`${this.mergedCommandsUnit.toString()}`);
 
         if (scale) {
             this.scale = scale;
         } else {
             this.scale = 1.0;
-            if (this.boundingRect) {
-                if (this.mergedCommandsUnit.boundingRect.width > this.mergedCommandsUnit.boundingRect.height) {
-                    if (this.boundingRect.width < this.mergedCommandsUnit.boundingRect.width) {
-                        this.scale = this.boundingRect.width / this.mergedCommandsUnit.boundingRect.width;
+            if (this.boundingRect && this.mergedCommandsUnit && this.mergedCommandsUnit.boundingRect) {
+                try {
+                    if (this.mergedCommandsUnit.boundingRect.width > this.mergedCommandsUnit.boundingRect.height) {
+                        if (this.boundingRect.width < this.mergedCommandsUnit.boundingRect.width) {
+                            this.scale = this.boundingRect.width / this.mergedCommandsUnit.boundingRect.width;
+                        }
+                    } else {
+                        if (this.boundingRect.height < this.mergedCommandsUnit.boundingRect.height) {
+                            this.scale = this.boundingRect.height / this.mergedCommandsUnit.boundingRect.height;
+                        }
                     }
-                } else {
-                    if (this.boundingRect.height < this.mergedCommandsUnit.boundingRect.height) {
-                        this.scale = this.boundingRect.height / this.mergedCommandsUnit.boundingRect.height;
-                    }
+                } catch (e) {
+                    console.log(e);
                 }
             }
         }
@@ -52,27 +56,31 @@ class WwDrawingHistoryRenderer {
 
         this.offset = new Point();
 
-        if (this.boundingRect) {
-            console.log(` updating offset: `);
-            this.offset = new Point(this.boundingRect.left - this.mergedCommandsUnit.boundingRect.left, this.boundingRect.top - this.mergedCommandsUnit.boundingRect.top);
+        if (this.boundingRect && this.mergedCommandsUnit && this.mergedCommandsUnit.boundingRect) {
+            //console.log(` updating offset: `);
+            try {
+                this.offset = new Point(this.boundingRect.left - this.mergedCommandsUnit.boundingRect.left, this.boundingRect.top - this.mergedCommandsUnit.boundingRect.top);
 
-            if (this.centerDrawing) {
-                let scaled_drawing_width = this.mergedCommandsUnit.boundingRect.width * this.scale;
-                let center_x_offset = (this.boundingRect.width - scaled_drawing_width) / 2;
-                let scaled_drawing_height = this.mergedCommandsUnit.boundingRect.height * this.scale;
-                let center_y_offset = (this.boundingRect.height - scaled_drawing_height) / 2;
-                console.log(` center_x_offset: ${center_x_offset}, ${this.boundingRect.width} - ${scaled_drawing_width}`);
-                console.log(` center_y_offset: ${center_y_offset}, ${this.boundingRect.width} - ${scaled_drawing_height}`);
-                this.offset.x += center_x_offset;
-                this.offset.y += center_y_offset;
+                if (this.centerDrawing) {
+                    let scaled_drawing_width = this.mergedCommandsUnit.boundingRect.width * this.scale;
+                    let center_x_offset = (this.boundingRect.width - scaled_drawing_width) / 2;
+                    let scaled_drawing_height = this.mergedCommandsUnit.boundingRect.height * this.scale;
+                    let center_y_offset = (this.boundingRect.height - scaled_drawing_height) / 2;
+                    //console.log(` center_x_offset: ${center_x_offset}, ${this.boundingRect.width} - ${scaled_drawing_width}`);
+                    //console.log(` center_y_offset: ${center_y_offset}, ${this.boundingRect.width} - ${scaled_drawing_height}`);
+                    this.offset.x += center_x_offset;
+                    this.offset.y += center_y_offset;
+                }
+            } catch (e) {
+                console.log(e);
             }
         }
 
-        if (this.boundingRect) {
-            console.log(` bounding rect: ${this.boundingRect.toString()}`);
-        }
-        console.log(` merged unit bounding rect: ${this.mergedCommandsUnit.boundingRect.toString()}`);
-        console.log(` offset: ${this.offset.toString()}`);
+        //if (this.boundingRect) {
+        //    console.log(` bounding rect: ${this.boundingRect.toString()}`);
+        //}
+        //console.log(` merged unit bounding rect: ${this.mergedCommandsUnit.boundingRect.toString()}`);
+        //console.log(` offset: ${this.offset.toString()}`);
 
     }
 
