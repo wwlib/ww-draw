@@ -15,9 +15,20 @@ import WwDrawingHistory from './ww-drawing-history';
 import WwDrawingHistoryRenderer from './ww-drawing-history-renderer';
 import WwDrawingHistoryLoader from './ww-drawing-history-loader';
 
-import TestData from '../images/drawings/flower.json';
+import drawings from '../images/drawings/drawings.json';
+import path from 'path';
+
+let drawings_count = drawings.list.length;
+let drawing_index = Math.floor(Math.random() * drawings_count);
+let drawing_filename = drawings.list[drawing_index];
+let drawing_path = path.join(__dirname, '../images/drawings', drawing_filename);
+
+console.log(drawing_path);
+
+let TestData = require(drawing_path);
 
 let pixijs_renderer, stage, renderTexture, rtSprite;
+let drawing_renderer;
 
 if (!PIXI) {
     console.log(`test-pixijs.js: PIXI must be defined in 'pixijs' mode!`);
@@ -48,18 +59,16 @@ function onBrushesLoaded(brushes) {
 
     let render_rect = new Rect(110, 390, 500, 500);
 
-    let renderer = new WwDrawingHistoryRenderer(historyLoader.history, renderTexture, render_rect, true, 0.8);
+    drawing_renderer = new WwDrawingHistoryRenderer(historyLoader.history, renderTexture, render_rect, true);
 
-    let intervalId = setInterval(() => {
-        if (renderer.ended) {
-            clearInterval(intervalId);
-        }
-        else {
-            renderer.renderHistoryWithDuration(99);
-            pixijs_renderer.render(stage);
-        }
-    }, 33);
-
+    window.requestAnimationFrame(update);
 }
 
-export default {Point, getTimer};
+function update() {
+    drawing_renderer.renderHistoryWithDuration(33); //render one 33ms segment of the drawing each frame
+    pixijs_renderer.render(stage);
+
+    if (!drawing_renderer.ended) {
+        window.requestAnimationFrame(update);
+    }
+}

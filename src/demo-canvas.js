@@ -30,7 +30,7 @@ test_sprite.loadImageWithURLAndCallback('./images/player.png', onSpriteImageLoad
 
 let bg_sprite = new WwSprite(0, 0);
 console.log(`WwSprite: ${bg_sprite}`);
-bg_sprite.loadImageWithURLAndCallback('./images/bg_500.png', onEyeImageLoaded);
+bg_sprite.loadImageWithURLAndCallback('./images/bg_500.png', onBGImageLoaded);
 
 let test_brush = new WwBrush();
 console.log(`WwBrush: ${test_brush}`);
@@ -60,6 +60,8 @@ test_commands.forEach(data_object => {
 
 WwDrawingBrushManager.instance.init(onBrushesLoaded);
 
+let drawing_renderer;
+
 function onBrushesLoaded(brushes) {
     console.log(`onBrushesLoaded:`);
     console.log(brushes);
@@ -69,17 +71,17 @@ function onBrushesLoaded(brushes) {
 
     let render_rect = new Rect(110, 390, 500, 500);
 
-    let renderer = new WwDrawingHistoryRenderer(historyLoader.history, ctx, render_rect, true, 0.8);
+    drawing_renderer = new WwDrawingHistoryRenderer(historyLoader.history, ctx, render_rect, true, 0.8);
 
-    let intervalId = setInterval(() => {
-        if (renderer.ended) {
-            clearInterval(intervalId);
-        }
-        else {
-            renderer.renderHistoryWithDuration(99);
-        }
-    }, 33);
+    window.requestAnimationFrame(update);
+}
 
+function update() {
+    drawing_renderer.renderHistoryWithDuration(33); //render one 33ms segment of the drawing each frame
+
+    if (!drawing_renderer.ended) {
+        window.requestAnimationFrame(update);
+    }
 }
 
 function onSpriteImageLoaded(sprite) {
@@ -87,8 +89,8 @@ function onSpriteImageLoaded(sprite) {
     sprite.draw(ctx);
 }
 
-function onEyeImageLoaded(sprite) {
-    console.log(`onEyeImageLoaded: ${sprite}`);
+function onBGImageLoaded(sprite) {
+    console.log(`onBGImageLoaded: ${sprite}`);
     sprite.x = 390;
     sprite.y = 110;
     sprite.draw(ctx);
@@ -98,6 +100,3 @@ function onBrushImageLoaded(brush) {
     console.log(`onBrushImageLoaded: ${brush}`);
     brush.draw(ctx);
 }
-
-
-export default {Point, getTimer};

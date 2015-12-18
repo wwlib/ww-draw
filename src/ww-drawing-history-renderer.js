@@ -52,7 +52,7 @@ class WwDrawingHistoryRenderer {
                 }
             }
         }
-        console.log(` scale: ${this.scale}`);
+        //console.log(` scale: ${this.scale}`);
 
         this.offset = new Point();
 

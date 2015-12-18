@@ -15,7 +15,7 @@ import WwDrawingHistory from './ww-drawing-history';
 import WwDrawingHistoryRenderer from './ww-drawing-history-renderer';
 import WwDrawingHistoryLoader from './ww-drawing-history-loader';
 
-
+console.log("ww-draw module loaded. (use: electron index.js to run the demo.")
 
 
 export default {Point, Rect, getTimer, WwSprite, WwBrush, WwDrawingHistoryBrushCommand, WwDeviceInfo, WwDrawingHistoryUnit, WwDeviceInfo, WwDrawingHistoryUnit, WwDrawingBrushManager, WwDrawingHistory, WwDrawingHistoryRenderer, WwDrawingHistoryLoader};
