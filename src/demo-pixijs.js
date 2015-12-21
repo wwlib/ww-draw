@@ -2,21 +2,24 @@
  * Created by andrew rapo (andrew@worthwhilegames.org) on 7/7/15.
  */
 
-import Point from './point';
+import path from 'path';
+
+//import Point from './point';
 import Rect from './rect';
-import getTimer from './get-timer';
-import WwSprite from './ww-sprite';
-import WwBrush from './ww-brush';
-import WwDrawingHistoryBrushCommand from './ww-drawing-history-brush-command';
-import WwDeviceInfo from './ww-device-info';
-import WwDrawingHistoryUnit from './ww-drawing-history-unit';
+//import getTimer from './get-timer';
+//import WwSprite from './ww-sprite';
+//import WwBrush from './ww-brush';
+//import WwDrawingHistoryBrushCommand from './ww-drawing-history-brush-command';
+//import WwDeviceInfo from './ww-device-info';
+//import WwDrawingHistoryUnit from './ww-drawing-history-unit';
+//import WwDrawingHistory from './ww-drawing-history';
+
 import WwDrawingBrushManager from './ww-drawing-brush-manager';
-import WwDrawingHistory from './ww-drawing-history';
 import WwDrawingHistoryRenderer from './ww-drawing-history-renderer';
 import WwDrawingHistoryLoader from './ww-drawing-history-loader';
 
 import drawings from '../images/drawings/drawings.json';
-import path from 'path';
+
 
 let drawings_count = drawings.list.length;
 let drawing_index = Math.floor(Math.random() * drawings_count);
@@ -35,7 +38,7 @@ if (!PIXI) {
 } else {
 
     pixijs_renderer = new PIXI.autoDetectRenderer(1280, 720, {
-        view: document.getElementById("test-canvas"),
+        view: document.getElementById("demo-canvas"),
         backgroundColor: 0x000000,
         antialias: true
     });

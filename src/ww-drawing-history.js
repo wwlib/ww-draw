@@ -18,6 +18,8 @@ class WwDrawingHistory {
         this.startTime = 0;
         this.duration = 0;
         this.boundingRect = null;
+        this.scale = 1;
+        this.sessions = [];
     }
 
     toString()
@@ -82,7 +84,35 @@ class WwDrawingHistory {
 
         return unit;
     }
+
+    get json()
+    {
+        console.log(`Generating json`);
+        let json = {};
+        json.start = this.startTime;
+        json.end = this.duration;
+        json.scale = this.scale;
+
+        // units
+        let _units = [];
+        this.units.forEach(_unit => {
+            _units.push(_unit.json);
+        });
+        json.units = _units;
+
+        // sessions
+        let _sessions = [];
+        this.sessions.forEach(_session => {
+            _sessions.push(_session.json);
+            json.stats = _session.stats.json; //keep the latest
+        });
+        json.sessions = _sessions;
+
+        return json;
+    }
 }
+
+
 
 export default WwDrawingHistory;
 

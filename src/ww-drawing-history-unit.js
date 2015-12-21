@@ -120,11 +120,11 @@ class WwDrawingHistoryUnit {
 
     get json()
     {
-        let json = new Object();
+        let json = {};
         json.id = this.id;
-        json.start = startTime;
-        json.dur = duration;
-        json.end = startTime + duration;
+        json.start = this.startTime;
+        json.dur = this.duration;
+        json.end = this.startTime + this.duration;
         json.lid = this.layerId;
         json.ses = this.sessionId;
 

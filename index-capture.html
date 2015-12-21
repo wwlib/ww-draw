@@ -5,7 +5,7 @@
     <title>WwDraw Tests</title>
     <style>
         body {
-            color: #000;
+            color: #fff;
             font-family:Monospace;
             font-size:13px;
             text-align:center;
@@ -18,9 +18,10 @@
     <script src="./deps/pixi.js/bin/pixi.js"></script>
 </head>
 <body>
+<div id="ui"></div>
 <canvas id="demo-canvas" width="1280" height="720"></canvas>
 </body>
 <script>
-    require('./lib/demo-pixijs.js');
+    require('./lib/demo-pixijs-capture.js');
 </script>
 </html>

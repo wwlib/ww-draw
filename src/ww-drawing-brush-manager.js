@@ -46,13 +46,13 @@ class WwDrawingBrushManager {
             this.brushIdArray[5] = "circleSoft";
             this.brushIdArray[6] = "star";
 
-            this.brushURLs["hard"] = "./images/brushes/brush_hard_blue.png";
-            this.brushURLs["soft"] = "./images/brushes/brush_soft.png";
-            this.brushURLs["crayon"] = "./images/brushes/brush_crayon.png";
-            this.brushURLs["calligraphy"] = "./images/brushes/brush_calligraphy.png";
-            this.brushURLs["pencil"] = "./images/brushes/brush_pencil.png";
-            this.brushURLs["circleSoft"] = "./images/brushes/brush_circleSoft.png";
-            this.brushURLs["star"] = "./images/brushes/brush_star.png"; //,interval_dash";
+            this.brushURLs["hard"] = "./images/brushes/hard_blue.png";
+            this.brushURLs["soft"] = "./images/brushes/soft.png";
+            this.brushURLs["crayon"] = "./images/brushes/crayon.png";
+            this.brushURLs["calligraphy"] = "./images/brushes/calligraphy.png";
+            this.brushURLs["pencil"] = "./images/brushes/pencil.png";
+            this.brushURLs["circleSoft"] = "./images/brushes/circleSoft.png";
+            this.brushURLs["star"] = "./images/brushes/star.png"; //,interval_dash";
         } else {
             let path = this.brushesObject.path ? this.brushesObject.path : "./images/brushes/";
             let list = this.brushesObject.list;

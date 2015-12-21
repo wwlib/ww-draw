@@ -17,7 +17,7 @@ import WwDrawingHistoryLoader from './ww-drawing-history-loader';
 
 import TestData from '../images/drawings/flower.json';
 
-let canvas = document.getElementById("test-canvas");
+let canvas = document.getElementById("demo-canvas");
 let ctx = canvas.getContext("2d");
 ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -34,7 +34,7 @@ bg_sprite.loadImageWithURLAndCallback('./images/bg_500.png', onBGImageLoaded);
 
 let test_brush = new WwBrush();
 console.log(`WwBrush: ${test_brush}`);
-test_brush.loadImageWithURLAndCallback('./images/brushes/brush_circle.png', onBrushImageLoaded);
+test_brush.loadImageWithURLAndCallback('./images/brushes/circle.png', onBrushImageLoaded);
 
 let test_point1 = new Point(0,0);
 let test_point2 = new Point(1,1);
