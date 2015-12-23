@@ -54,7 +54,11 @@ class WwDrawingHistoryUnit {
 
         if (this.prevCommand)
         {
-            this.lineLength += Point.distance(this.prevCommand.location, _command.location);
+            let point_distance = Point.distance(this.prevCommand.location, _command.location);
+            //console.log(`addCommand: ${point_distance}`);
+
+            this.lineLength += point_distance;
+
             _command.lineLength = this.lineLength;
             if (link_prev_command)
             {

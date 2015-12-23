@@ -87,7 +87,8 @@ class Vector2 {
     }
 
     get magnitude() {
-        return Math.sqrt(this.x * this.x + this.y * this.y);
+        let aa_plus_bb = this.x * this.x + this.y * this.y;
+        return Math.sqrt(aa_plus_bb);
     }
 
 
