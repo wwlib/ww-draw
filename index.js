@@ -1,6 +1,6 @@
-var app = require('app');
-var BrowserWindow = require('browser-window');
-var Menu = require('menu');
+var app = require('electron').app;
+var BrowserWindow = require('electron').BrowserWindow;
+var Menu =  require('electron').Menu;
 var mainWindow = null;
 var path = require('path');
 

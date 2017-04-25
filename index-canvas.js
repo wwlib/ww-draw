@@ -1,13 +1,9 @@
 
-var app = require('app');  // Module to control application life.
-var BrowserWindow = require('browser-window');  // Module to create native browser window.
-
-// Report crashes to our server.
-require('crash-reporter').start();
-
-// Keep a global reference of the window object, if you don't, the window will
-// be closed automatically when the javascript object is GCed.
+var app = require('electron').app;
+var BrowserWindow = require('electron').BrowserWindow;
+var Menu =  require('electron').Menu;
 var mainWindow = null;
+var path = require('path');
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function() {
