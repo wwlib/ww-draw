@@ -2,21 +2,26 @@
   "name": "ww-draw",
   "version": "0.0.9",
   "description": "A time-based drawing library for capturing and replaying multi-layered, multi-author drawings",
-  "main": "lib/main.js",
+  "main": "lib/index.js",
+  "config": {
+    "watch": "src",
+    "app": "src/index.ts",
+    "lib": "lib/*.*"
+  },
   "scripts": {
-    "test": "tbd"
+    "build": "npm run clean; tsc",
+    "test": "mocha",
+    "clean": "cross-conf-env rimraf npm_package_config_lib"
   },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com:wwlib/ww-draw.git"
   },
   "devDependencies": {
-    "gulp": "^3.8.11",
-    "gulp-babel": "^5.1.0",
-    "gulp-cached": "^1.0.4",
-    "gulp-sourcemaps": "^1.5.2",
-    "gulp-watch": "^4.2.4",
-    "gulp-mocha": "^2.1.0"
+    "cross-conf-env": "latest",
+    "typescript": "^2.0.0",
+    "rimraf": "latest",
+    "mocha": "~2.4.5"
   },
   "keywords": [
     "drawing"
@@ -26,5 +31,8 @@
   "bugs": {
     "url": "https://github.com/wwlib/ww-draw/issues"
   },
-  "homepage": "https://github.com/wwlib/ww-draw#readme"
+  "homepage": "https://github.com/wwlib/ww-draw#readme",
+  "dependencies": {
+    "pixi.js": "^4.5.1"
+  }
 }

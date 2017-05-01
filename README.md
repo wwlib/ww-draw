@@ -1,4 +1,4 @@
-wwdraw - a time-based drawing replay library
+ww-draw - a time-based drawing replay library
 
 
 Note: To run a pixijs demo of drawing replay, use:
