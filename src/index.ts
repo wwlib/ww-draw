@@ -5,16 +5,31 @@
 import Point from './point';
 import Rect from './rect';
 import { getTimer } from './GetTimer';
-import WwSprite from './WwSprite';
-import WwBrush from './WwBrush';
-import WwDrawingHistoryBrushCommand from './WwDrawingHistoryBrushCommand';
-import WwDeviceInfo from './WwDeviceInfo';
-import WwDrawingHistoryUnit from './WwDrawingHistoryUnit';
-import WwDrawingBrushManager from './WwDrawingBrushManager';
-import WwDrawingHistory from './WwDrawingHistory';
-import WwDrawingHistoryRenderer from './WwDrawingHistoryRenderer';
-import WwDrawingHistoryLoader from './WwDrawingHistoryLoader';
+import Sprite from './WwSprite';
+import Brush from './WwBrush';
+import DrawingHistoryBrushCommand from './WwDrawingHistoryBrushCommand';
+import DeviceInfo from './WwDeviceInfo';
+import DrawingHistoryUnit from './WwDrawingHistoryUnit';
+import DrawingBrushManager from './WwDrawingBrushManager';
+import DrawingHistory from './WwDrawingHistory';
+import DrawingHistoryRenderer from './WwDrawingHistoryRenderer';
+import DrawingHistoryLoader from './WwDrawingHistoryLoader';
+import PixiRenderTextureContext from './WwPixiRenderTextureContext';
 
 console.log("ww-draw module loaded.")
 
-export default {Point, Rect, getTimer, WwSprite, WwBrush, WwDrawingHistoryBrushCommand, WwDeviceInfo, WwDrawingHistoryUnit, WwDrawingBrushManager, WwDrawingHistory, WwDrawingHistoryRenderer, WwDrawingHistoryLoader};
+export default {
+    Point,
+    Rect,
+    getTimer,
+    Sprite,
+    Brush,
+    DrawingHistoryBrushCommand,
+    DeviceInfo,
+    DrawingHistoryUnit,
+    DrawingBrushManager,
+    DrawingHistory,
+    DrawingHistoryRenderer,
+    DrawingHistoryLoader,
+    PixiRenderTextureContext
+};

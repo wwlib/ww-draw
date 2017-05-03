@@ -29,7 +29,9 @@ let TestData = require(drawing_path);
 let stage, rtSprite;
 let drawing_renderer;
 let app = new PIXI.Application(1280, 720, {backgroundColor : 0x1099bb});
-document.body.appendChild(app.view);
+let appCanvas = document.body.appendChild(app.view);
+appCanvas.id = 'app-canvas';
+console.log(appCanvas);
 
 let brt: PIXI.BaseRenderTexture = new PIXI.BaseRenderTexture(1280, 720, PIXI.SCALE_MODES.LINEAR, 1);
 let renderTexture: PIXI.RenderTexture = new PIXI.RenderTexture(brt);

@@ -6,6 +6,7 @@ import WwDrawingHistory from './WwDrawingHistory';
 import WwDrawingHistoryUnit from './WwDrawingHistoryUnit';
 import WwDrawingHistoryBrushCommand from './WwDrawingHistoryBrushCommand';
 import Point from './point';
+const jsonfile = require('jsonfile');
 
 class WwDrawingHistoryLoader {
 
@@ -14,6 +15,17 @@ class WwDrawingHistoryLoader {
     constructor() {
         this.history = null;
 
+    }
+
+    loadAndParseDrawingData(fileUrl: string, callback: any): void {
+        jsonfile.readFile(fileUrl, (err: any, data: any) => {
+            if (err) {
+                callback(err);
+            } else {
+                this.parseDrawingData(data);
+                callback(err, data);
+            }
+        });
     }
 
     parseDrawingData(data) {
@@ -39,7 +51,6 @@ class WwDrawingHistoryLoader {
             });
             this.history.addUnit(unit);
         });
-
     }
 }
 

@@ -17,6 +17,10 @@
     "type": "git",
     "url": "git+ssh://git@github.com:wwlib/ww-draw.git"
   },
+  "dependencies": {
+    "pixi.js": "^4.5.1",
+    "jsonfile": "^2.4.0"
+  },
   "devDependencies": {
     "cross-conf-env": "latest",
     "typescript": "^2.0.0",
@@ -31,8 +35,5 @@
   "bugs": {
     "url": "https://github.com/wwlib/ww-draw/issues"
   },
-  "homepage": "https://github.com/wwlib/ww-draw#readme",
-  "dependencies": {
-    "pixi.js": "^4.5.1"
-  }
+  "homepage": "https://github.com/wwlib/ww-draw#readme"
 }
