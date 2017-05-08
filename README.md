@@ -1,14 +1,16 @@
-ww-draw - a time-based drawing replay library
+# WwDraw - a time-based drawing replay library
 
+- WwDraw is a work in progress
 
-Note: To run a pixijs demo of drawing replay, use:
+## Demos
+### PixiJs replay
+- a pixijs demo of drawing replay, use:
+- `electron index.js`
 
-electron index.js
+### PixiJs capture
+- a pixijs demo of drawing capture & replay, use:
+- `electron index-capture.js`
 
-Note: To run a pixijs demo of drawing capture & replay, use:
-
-electron index-capture.js
-
-Note: To run a canvas-based demo of drawing replay, use:
-
-electron index-canvas.js
+### Canvas replay
+- a canvas-based demo of drawing replay, use:
+- `electron index-canvas.js`
