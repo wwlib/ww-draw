@@ -14,7 +14,7 @@ import DrawingBrushManager from './WwDrawingBrushManager';
 import DrawingHistory from './WwDrawingHistory';
 import DrawingHistoryRenderer from './WwDrawingHistoryRenderer';
 import DrawingHistoryLoader from './WwDrawingHistoryLoader';
-import PixiRenderTextureContext from './WwPixiRenderTextureContext';
+import RenderTextureContext from './WwRenderTextureContext';
 
 console.log("ww-draw module loaded.")
 
@@ -31,5 +31,5 @@ export default {
     DrawingHistory,
     DrawingHistoryRenderer,
     DrawingHistoryLoader,
-    PixiRenderTextureContext
+    RenderTextureContext
 };

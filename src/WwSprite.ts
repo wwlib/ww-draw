@@ -2,7 +2,7 @@
  * Created by andrew rapo (andrew@worthwhilegames.org) on 7/7/15.
  */
 
- import WwPixiRenderTextureContext from './WwPixiRenderTextureContext';
+ import WwRenderTextureContext from './WwRenderTextureContext';
 
 /**
  * @author Andrew Rapo (andrew@worthwhilegames.org)
@@ -128,8 +128,8 @@ class WwSprite {
     }
 
     // draw(context: CanvasRenderingContext2D): void;
-    // draw(context: WwPixiRenderTextureContext): void;
-    draw(context: WwPixiRenderTextureContext | CanvasRenderingContext2D): void {
+    // draw(context: WwRenderTextureContext): void;
+    draw(context: WwRenderTextureContext | CanvasRenderingContext2D): void {
         if (context instanceof CanvasRenderingContext2D) {
             if (this.img) {
                 context.globalAlpha = this.alpha;
@@ -147,7 +147,7 @@ class WwSprite {
             } else {
                 this.fill(context);
             }
-        } else if (context instanceof WwPixiRenderTextureContext) {
+        } else if (context instanceof WwRenderTextureContext) {
             this.pixijsSprite.x = this.x;
             this.pixijsSprite.y = this.y;
             this.pixijsSprite.scale.x = this.scale;

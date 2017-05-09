@@ -18,8 +18,9 @@
     "url": "git+ssh://git@github.com:wwlib/ww-draw.git"
   },
   "dependencies": {
-    "pixi.js": "^4.5.1",
-    "jsonfile": "^2.4.0"
+    "jsonfile": "^2.4.0",
+    "pixi-compressed-textures": "^1.1.4",
+    "pixi.js": "^4.4.1"
   },
   "devDependencies": {
     "cross-conf-env": "latest",
