@@ -5,7 +5,7 @@
 import WwDrawingHistory from './WwDrawingHistory';
 import WwDrawingHistoryUnit from './WwDrawingHistoryUnit';
 import WwDrawingHistoryBrushCommand from './WwDrawingHistoryBrushCommand';
-import Point from './point';
+import Point from './Point';
 const jsonfile = require('jsonfile');
 
 class WwDrawingHistoryLoader {

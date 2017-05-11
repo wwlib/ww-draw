@@ -7,7 +7,7 @@ import WwDrawingHistoryUnit from './WwDrawingHistoryUnit';
 import WwDrawingHistoryBrushCommand from './WwDrawingHistoryBrushCommand';
 import WwRenderTextureContext from './WwRenderTextureContext';
 import WwBrush from './WwBrush';
-import Point from './Point.js';
+import Point from './Point';
 import Rect from './Rect';
 
 class WwDrawingHistoryRenderer {
