@@ -9,7 +9,7 @@
 import WwSprite from './WwSprite';
 declare class WwBrush extends WwSprite {
     color: number;
-    constructor(mode?: string);
+    constructor(mode?: string, PIXI?: any);
     onReady(): void;
 }
 export default WwBrush;

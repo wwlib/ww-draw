@@ -14,6 +14,7 @@ export default class WwDrawingBrushManager {
 
     static _instance: WwDrawingBrushManager;
 
+    public initialized: boolean;
     public brushIdArray: string[];
     public brushURLs: any;
     public brushes: any;
@@ -21,12 +22,14 @@ export default class WwDrawingBrushManager {
     public callback: any;
     public mode: string;
     public brushesObject: any;
+    public PIXI: any;
 
     constructor() {
         this.brushIdArray = [];
         this.brushURLs = {};
         this.brushes = {};
         this.brushesLoadedCount = 0;
+        this.initialized = false;
     }
 
     static get instance() {
@@ -37,66 +40,75 @@ export default class WwDrawingBrushManager {
         return WwDrawingBrushManager._instance;
     }
 
-    init(callback=null, mode='canvas', brushes_obj=null)
+    init(callback=null, brushes_obj=null, mode='canvas', PIXI?: any)
     {
         console.log(`WwDrawingBrushManager: mode == ${mode}`);
         this.callback = callback;
-        this.mode = mode;
-        this.brushesObject = brushes_obj;
-        this.brushIdArray = [];
-        this.brushURLs = {};
-        this.brushes = {};
-        this.brushesLoadedCount = 0;
-
-        if (!this.brushesObject) {
-            this.brushIdArray[0] = "hard";
-            this.brushIdArray[1] = "soft";
-            this.brushIdArray[2] = "crayon";
-            this.brushIdArray[3] = "calligraphy";
-            this.brushIdArray[4] = "pencil";
-            this.brushIdArray[5] = "circleSoft";
-            this.brushIdArray[6] = "star";
-
-            this.brushURLs["hard"] = "./images/brushes/hard_blue.png";
-            this.brushURLs["soft"] = "./images/brushes/soft.png";
-            this.brushURLs["crayon"] = "./images/brushes/crayon.png";
-            this.brushURLs["calligraphy"] = "./images/brushes/calligraphy.png";
-            this.brushURLs["pencil"] = "./images/brushes/pencil.png";
-            this.brushURLs["circleSoft"] = "./images/brushes/circleSoft.png";
-            this.brushURLs["star"] = "./images/brushes/star.png"; //,interval_dash";
-        } else {
-            let path = this.brushesObject.path ? this.brushesObject.path : "./images/brushes/";
-            let list = this.brushesObject.list;
-
-            if (!list) {
-                console.log(`WwDrawingBrushManager: brushes list must be a valid array of brush names!`);
-            } else {
-                list.forEach((brush_filename) => {
-                    let parts = brush_filename.split('.');
-                    let id = parts[0];
-                    this.brushIdArray.push(id);
-                    this.brushURLs[id] = path + brush_filename;
-                    //console.log(this.brushURLs[id]);
-                });
+        if (this.initialized) {
+            console.log(`WwDrawingBrushManager: init: already initialized`);
+            if (this.callback) {
+                this.callback(this.brushes);
+                this.callback = null;
             }
-        }
+        } else {
+            this.mode = mode;
+            this.PIXI = PIXI;
+            this.brushesObject = brushes_obj;
+            this.brushIdArray = [];
+            this.brushURLs = {};
+            this.brushes = {};
+            this.brushesLoadedCount = 0;
 
-        //console.log(this.brushURLs);
-        //console.log(this.brushIdArray);
-        /*
-        this.brushURLs.forEach(_key => {
-            let _brush = new WwBrush();
-            _brush.loadImage(this.brushURLs[_key]);
-            this.brushes[_key] = _brush;
-            //console.log("BrushManager: " + _key + ":" + this.brushes[_key] + ", " + this.brushURLs[_key], "1");
-        });
-        */
+            if (!this.brushesObject) {
+                this.brushIdArray[0] = "hard";
+                this.brushIdArray[1] = "soft";
+                this.brushIdArray[2] = "crayon";
+                this.brushIdArray[3] = "calligraphy";
+                this.brushIdArray[4] = "pencil";
+                this.brushIdArray[5] = "circleSoft";
+                this.brushIdArray[6] = "star";
 
-        for (let _key in this.brushURLs) {
-            let _brush = new WwBrush(this.mode);
-            let onBrushImageLoadedCallback = this.onBrushImageLoaded.bind(this);
-            _brush.loadImageWithURLAndCallback(this.brushURLs[_key], onBrushImageLoadedCallback);
-            this.brushes[_key] = _brush;
+                this.brushURLs["hard"] = "./images/brushes/hard_blue.png";
+                this.brushURLs["soft"] = "./images/brushes/soft.png";
+                this.brushURLs["crayon"] = "./images/brushes/crayon.png";
+                this.brushURLs["calligraphy"] = "./images/brushes/calligraphy.png";
+                this.brushURLs["pencil"] = "./images/brushes/pencil.png";
+                this.brushURLs["circleSoft"] = "./images/brushes/circleSoft.png";
+                this.brushURLs["star"] = "./images/brushes/star.png"; //,interval_dash";
+            } else {
+                let path = this.brushesObject.path ? this.brushesObject.path : "./images/brushes/";
+                let list = this.brushesObject.list;
+
+                if (!list) {
+                    console.log(`WwDrawingBrushManager: brushes list must be a valid array of brush names!`);
+                } else {
+                    list.forEach((brush_filename) => {
+                        let parts = brush_filename.split('.');
+                        let id = parts[0];
+                        this.brushIdArray.push(id);
+                        this.brushURLs[id] = path + brush_filename;
+                        //console.log(this.brushURLs[id]);
+                    });
+                }
+            }
+
+            //console.log(this.brushURLs);
+            //console.log(this.brushIdArray);
+            /*
+            this.brushURLs.forEach(_key => {
+                let _brush = new WwBrush();
+                _brush.loadImage(this.brushURLs[_key]);
+                this.brushes[_key] = _brush;
+                //console.log("BrushManager: " + _key + ":" + this.brushes[_key] + ", " + this.brushURLs[_key], "1");
+            });
+            */
+
+            for (let _key in this.brushURLs) {
+                let _brush = new WwBrush(this.mode, this.PIXI);
+                let onBrushImageLoadedCallback = this.onBrushImageLoaded.bind(this);
+                _brush.loadImageWithURLAndCallback(this.brushURLs[_key], onBrushImageLoadedCallback);
+                this.brushes[_key] = _brush;
+            }
         }
     }
 
@@ -104,6 +116,7 @@ export default class WwDrawingBrushManager {
         this.brushesLoadedCount++;
 
         if (this.brushesLoadedCount == this.brushIdArray.length) {
+            this.initialized = true;
             if (this.callback) {
                 this.callback(this.brushes);
                 this.callback = null;

@@ -17,10 +17,13 @@
     "type": "git",
     "url": "git+ssh://git@github.com:wwlib/ww-draw.git"
   },
-  "dependencies": {
+  "dependencies-save": {
     "jsonfile": "^2.4.0",
     "pixi-compressed-textures": "^1.1.4",
     "pixi.js": "^4.4.1"
+  },
+  "dependencies": {
+    "jsonfile": "^2.4.0"
   },
   "devDependencies": {
     "cross-conf-env": "latest",

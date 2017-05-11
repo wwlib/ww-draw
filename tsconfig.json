@@ -11,6 +11,8 @@
         "declaration": true
     },
     "exclude": [
+        "demo",
+        "lib",
         "node_modules"
     ],
     "compileOnSave": false

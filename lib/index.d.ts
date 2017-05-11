@@ -12,7 +12,7 @@ import DrawingBrushManager from './WwDrawingBrushManager';
 import DrawingHistory from './WwDrawingHistory';
 import DrawingHistoryRenderer from './WwDrawingHistoryRenderer';
 import DrawingHistoryLoader from './WwDrawingHistoryLoader';
-import PixiRenderTextureContext from './WwPixiRenderTextureContext';
+import RenderTextureContext from './WwRenderTextureContext';
 declare var _default: {
     Point: typeof Point;
     Rect: typeof Rect;
@@ -26,6 +26,6 @@ declare var _default: {
     DrawingHistory: typeof DrawingHistory;
     DrawingHistoryRenderer: typeof DrawingHistoryRenderer;
     DrawingHistoryLoader: typeof DrawingHistoryLoader;
-    PixiRenderTextureContext: typeof PixiRenderTextureContext;
+    RenderTextureContext: typeof RenderTextureContext;
 };
 export default _default;

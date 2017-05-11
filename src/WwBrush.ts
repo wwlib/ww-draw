@@ -13,8 +13,8 @@ import WwSprite from './WwSprite';
 class WwBrush extends WwSprite {
 
     public color: number;
-    constructor(mode='canvas') {
-        super(0, 0, mode);
+    constructor(mode='canvas', PIXI?: any) {
+        super(0, 0, mode, PIXI);
         this.color = null;
     }
 
