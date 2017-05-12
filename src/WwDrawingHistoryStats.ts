@@ -2,12 +2,10 @@
  * Created by andrew rapo (andrew@worthwhilegames.org) on 8/13/15.
  */
 
-class WwDrawingHistoryStats {
+export class WwDrawingHistoryStats {
     constructor() {
     }
 }
-
-export default WwDrawingHistoryStats;
 
 /*
 

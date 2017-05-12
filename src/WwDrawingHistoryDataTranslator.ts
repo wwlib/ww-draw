@@ -2,11 +2,11 @@
  * Created by andrew rapo (andrew@worthwhilegames.org) on 8/13/15.
  */
 
-import WwDrawingHistoryBrushCommand from './WwDrawingHistoryBrushCommand';
-import WwDeviceInfo from './WwDeviceInfo';
-import Point from './Point';
+import { WwDrawingHistoryBrushCommand } from './WwDrawingHistoryBrushCommand';
+import { WwDeviceInfo } from './WwDeviceInfo';
+import { Point } from './Point';
 
-class WwDrawingHistoryDataTranslator {
+export class WwDrawingHistoryDataTranslator {
 
     public previousCommandData: WwDrawingHistoryBrushCommand;
     public drawingScale: number;
@@ -59,8 +59,6 @@ class WwDrawingHistoryDataTranslator {
         return data_object;
     }
 }
-
-export default WwDrawingHistoryDataTranslator;
 
 /*
 package org.wwlib.drawing

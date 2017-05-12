@@ -1,8 +1,10 @@
 # WwDraw - a time-based drawing replay library
 
 - WwDraw is a work in progress
+- To install electron
+- `npm install -g electron`
 
-## Demos
+## Demos (in the demo directory)
 ### PixiJs replay
 - a pixijs demo of drawing replay, use:
 - `electron index.js`

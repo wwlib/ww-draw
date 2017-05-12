@@ -8,9 +8,9 @@
  * @license MIT
  */
 
-import WwBrush from'./WwBrush';
+import { WwBrush } from'./WwBrush';
 
-export default class WwDrawingBrushManager {
+export class WwDrawingBrushManager {
 
     static _instance: WwDrawingBrushManager;
 

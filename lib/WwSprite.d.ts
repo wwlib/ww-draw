@@ -1,12 +1,12 @@
 /**
  * Created by andrew rapo (andrew@worthwhilegames.org) on 7/7/15.
  */
-import WwRenderTextureContext from './WwRenderTextureContext';
+import { WwRenderTextureContext } from './WwRenderTextureContext';
 /**
  * @author Andrew Rapo (andrew@worthwhilegames.org)
  * @license MIT
  */
-declare class WwSprite {
+export declare class WwSprite {
     static BASE_SCALE_FACTOR: number;
     static SPRITE_STAGE: any;
     x: number;
@@ -38,4 +38,3 @@ declare class WwSprite {
     centerPivot(): void;
     log(msg: any): void;
 }
-export default WwSprite;

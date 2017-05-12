@@ -1,6 +1,6 @@
-import Rect from './Rect';
-import WwDrawingHistoryBrushCommand from './WwDrawingHistoryBrushCommand';
-declare class WwDrawingHistoryUnit {
+import { Rect } from './Rect';
+import { WwDrawingHistoryBrushCommand } from './WwDrawingHistoryBrushCommand';
+export declare class WwDrawingHistoryUnit {
     id: number;
     commands: WwDrawingHistoryBrushCommand[];
     timeScale: number;
@@ -26,4 +26,3 @@ declare class WwDrawingHistoryUnit {
     next(): any;
     nextInTimeRange(start_time: any, end_time: any): any;
 }
-export default WwDrawingHistoryUnit;

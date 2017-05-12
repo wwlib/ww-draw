@@ -2,15 +2,15 @@
  * Created by andrew rapo (andrew@worthwhilegames.org) on 8/13/15.
  */
 
-import WwDrawingHistory from './WwDrawingHistory';
-import WwDrawingHistoryUnit from './WwDrawingHistoryUnit';
-import WwDrawingHistoryBrushCommand from './WwDrawingHistoryBrushCommand';
-import WwRenderTextureContext from './WwRenderTextureContext';
-import WwBrush from './WwBrush';
-import Point from './Point';
-import Rect from './Rect';
+import { WwDrawingHistory } from './WwDrawingHistory';
+import { WwDrawingHistoryUnit } from './WwDrawingHistoryUnit';
+import { WwDrawingHistoryBrushCommand } from './WwDrawingHistoryBrushCommand';
+import { WwRenderTextureContext } from './WwRenderTextureContext';
+import { WwBrush } from './WwBrush';
+import { Point } from './Point';
+import { Rect } from './Rect';
 
-class WwDrawingHistoryRenderer {
+export class WwDrawingHistoryRenderer {
 
     public history: WwDrawingHistory;
     public context: CanvasRenderingContext2D | WwRenderTextureContext;
@@ -158,5 +158,3 @@ class WwDrawingHistoryRenderer {
         this.time = end_time;
     }
 }
-
-export default WwDrawingHistoryRenderer;

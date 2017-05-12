@@ -3,3 +3,4 @@ src
 node_modules
 .DS_Store
 images/drawings/captured-drawing.json
+demo

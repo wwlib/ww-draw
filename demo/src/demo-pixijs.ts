@@ -5,11 +5,7 @@
 const path = require('path');
 import PIXI = require('pixi.js');
 
-import Rect from './rect';
-import WwDrawingBrushManager from './WwDrawingBrushManager';
-import WwDrawingHistoryRenderer from './WwDrawingHistoryRenderer';
-import WwDrawingHistoryLoader from './WwDrawingHistoryLoader';
-import WwPixiRenderTextureContext from './WwPixiRenderTextureContext';
+import * as WwLib from '../../lib';
 
 let canvas: any = document.getElementById("demo-canvas");
 if (canvas) {
@@ -27,9 +23,9 @@ console.log(drawing_path);
 let TestData = require(drawing_path);
 
 let stage, rtSprite;
-let drawing_renderer;
-let app = new PIXI.Application(1280, 720, {backgroundColor : 0x1099bb});
-let appCanvas = document.body.appendChild(app.view);
+let drawing_renderer: WwLib.WwDrawingHistoryRenderer;
+let app: PIXI.Application = new PIXI.Application(1280, 720, {backgroundColor : 0x1099bb});
+let appCanvas: any = document.body.appendChild(app.view);
 appCanvas.id = 'app-canvas';
 console.log(appCanvas);
 
@@ -39,20 +35,20 @@ rtSprite = new PIXI.Sprite(renderTexture);
 
 app.stage.addChild(rtSprite);
 
-WwDrawingBrushManager.instance.init(onBrushesLoaded, 'pixijs');
+WwLib.WwDrawingBrushManager.instance.init(onBrushesLoaded.bind(this), null, 'pixijs', PIXI);
 
 function onBrushesLoaded(brushes) {
     console.log(`onBrushesLoaded:`);
     console.log(brushes);
 
-    let historyLoader: WwDrawingHistoryLoader = new WwDrawingHistoryLoader();
+    let historyLoader: WwLib.WwDrawingHistoryLoader = new WwLib.WwDrawingHistoryLoader();
     historyLoader.parseDrawingData(TestData);
 
-    let render_rect: Rect = new Rect(110, 390, 500, 500);
+    let render_rect: WwLib.Rect = new WwLib.Rect(110, 390, 500, 500);
     let webGlRenderer: PIXI.WebGLRenderer = <PIXI.WebGLRenderer>app.renderer;
-    let renderTextureContext: WwPixiRenderTextureContext = new WwPixiRenderTextureContext(webGlRenderer, renderTexture);
+    let renderTextureContext: WwLib.WwRenderTextureContext = new WwLib.WwRenderTextureContext(webGlRenderer, renderTexture);
 
-    drawing_renderer = new WwDrawingHistoryRenderer(historyLoader.history, renderTextureContext, render_rect, true);
+    drawing_renderer = new WwLib.WwDrawingHistoryRenderer(historyLoader.history, renderTextureContext, render_rect, true);
 
     window.requestAnimationFrame(update);
 }

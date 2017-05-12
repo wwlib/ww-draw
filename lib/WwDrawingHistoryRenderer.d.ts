@@ -1,13 +1,13 @@
 /**
  * Created by andrew rapo (andrew@worthwhilegames.org) on 8/13/15.
  */
-import WwDrawingHistory from './WwDrawingHistory';
-import WwDrawingHistoryUnit from './WwDrawingHistoryUnit';
-import WwRenderTextureContext from './WwRenderTextureContext';
-import WwBrush from './WwBrush';
-import Point from './Point.js';
-import Rect from './Rect';
-declare class WwDrawingHistoryRenderer {
+import { WwDrawingHistory } from './WwDrawingHistory';
+import { WwDrawingHistoryUnit } from './WwDrawingHistoryUnit';
+import { WwRenderTextureContext } from './WwRenderTextureContext';
+import { WwBrush } from './WwBrush';
+import { Point } from './Point';
+import { Rect } from './Rect';
+export declare class WwDrawingHistoryRenderer {
     history: WwDrawingHistory;
     context: CanvasRenderingContext2D | WwRenderTextureContext;
     boundingRect: Rect;
@@ -30,4 +30,3 @@ declare class WwDrawingHistoryRenderer {
     renderHistoryWithDuration(duration: any): void;
     renderHistoryWithTimeRange(start_time: any, end_time: any): void;
 }
-export default WwDrawingHistoryRenderer;

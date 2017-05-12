@@ -1,4 +1,4 @@
-export default class WwDrawingBrushManager {
+export declare class WwDrawingBrushManager {
     static _instance: WwDrawingBrushManager;
     initialized: boolean;
     brushIdArray: string[];

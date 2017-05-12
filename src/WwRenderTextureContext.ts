@@ -1,4 +1,4 @@
-export default class WwRenderTextureContext {
+export class WwRenderTextureContext {
 
     public renderer: any; //PIXI.WebGLRenderer;
     public rt: any; //PIXI.RenderTexture;

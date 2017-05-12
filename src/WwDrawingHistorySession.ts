@@ -3,13 +3,11 @@
  */
 
 
-class WwDrawingHistorySession {
+export class WwDrawingHistorySession {
     constructor() {
 
     }
 }
-
-export default WwDrawingHistorySession;
 
 /*
 

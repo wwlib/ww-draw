@@ -2,14 +2,14 @@
  * Created by andrew rapo (andrew@worthwhilegames.org) on 7/7/15.
  */
 
- import WwRenderTextureContext from './WwRenderTextureContext';
+ import { WwRenderTextureContext } from './WwRenderTextureContext';
 
 /**
  * @author Andrew Rapo (andrew@worthwhilegames.org)
  * @license MIT
  */
 
-class WwSprite {
+export class WwSprite {
 
     static BASE_SCALE_FACTOR: number = 0.5;
     static SPRITE_STAGE: any = {};
@@ -219,9 +219,6 @@ class WwSprite {
         console.log(`WwSprite: ${msg}`);
     }
 }
-
-export default WwSprite;
-
 
 /*
  package org.wwlib.starling

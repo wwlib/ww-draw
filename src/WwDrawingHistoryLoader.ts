@@ -2,13 +2,13 @@
  * Created by andrew rapo (andrew@worthwhilegames.org) on 8/24/15.
  */
 
-import WwDrawingHistory from './WwDrawingHistory';
-import WwDrawingHistoryUnit from './WwDrawingHistoryUnit';
-import WwDrawingHistoryBrushCommand from './WwDrawingHistoryBrushCommand';
-import Point from './Point';
+import { WwDrawingHistory } from './WwDrawingHistory';
+import { WwDrawingHistoryUnit } from './WwDrawingHistoryUnit';
+import { WwDrawingHistoryBrushCommand } from './WwDrawingHistoryBrushCommand';
+import { Point} from './Point';
 const jsonfile = require('jsonfile');
 
-class WwDrawingHistoryLoader {
+export class WwDrawingHistoryLoader {
 
     public history: WwDrawingHistory;
 
@@ -53,5 +53,3 @@ class WwDrawingHistoryLoader {
         });
     }
 }
-
-export default WwDrawingHistoryLoader;

@@ -8,11 +8,11 @@
  * @license MIT
  */
 
-import WwDrawingHistoryUnit from'./WwDrawingHistoryUnit';
-import WwDeviceInfo from './WwDeviceInfo';
-import Rect from './Rect';
+import { WwDrawingHistoryUnit } from'./WwDrawingHistoryUnit';
+import { WwDeviceInfo } from './WwDeviceInfo';
+import { Rect } from './Rect';
 
-class WwDrawingHistory {
+export class WwDrawingHistory {
 
     public units: WwDrawingHistoryUnit[];
     public startTime: number;
@@ -120,10 +120,6 @@ class WwDrawingHistory {
         return json;
     }
 }
-
-
-
-export default WwDrawingHistory;
 
 /*
 

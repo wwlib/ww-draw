@@ -1,4 +1,4 @@
-export default class WwRenderTextureContext {
+export declare class WwRenderTextureContext {
     renderer: any;
     rt: any;
     constructor(renderer: any, rt: any);
