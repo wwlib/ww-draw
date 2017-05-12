@@ -4,7 +4,7 @@
 
 import Vector2 from './vector2';
 
-class Point extends Vector2 {
+export class Point extends Vector2 {
 
     constructor(x=0, y=0) {
         super(x, y);
@@ -31,5 +31,3 @@ class Point extends Vector2 {
             return new Point(dx, dy);
     }
 }
-
-export default Point;

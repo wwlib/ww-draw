@@ -2,7 +2,7 @@
  * Created by andrew rapo (andrew@worthwhilegames.org) on 8/13/15.
  */
 
-class WwDeviceInfo {
+export class WwDeviceInfo {
 
     private  static _instance: WwDeviceInfo;
     private _assetScaleFactor: number;
@@ -23,5 +23,3 @@ class WwDeviceInfo {
         return this._assetScaleFactor;
     }
 }
-
-export default WwDeviceInfo;

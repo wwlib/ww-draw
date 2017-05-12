@@ -2,14 +2,14 @@
  * Created by andrew rapo (andrew@worthwhilegames.org) on 7/7/15.
  */
 
- import WwPixiRenderTextureContext from './WwPixiRenderTextureContext';
+ import { WwRenderTextureContext } from './WwRenderTextureContext';
 
 /**
  * @author Andrew Rapo (andrew@worthwhilegames.org)
  * @license MIT
  */
 
-class WwSprite {
+export class WwSprite {
 
     static BASE_SCALE_FACTOR: number = 0.5;
     static SPRITE_STAGE: any = {};
@@ -32,13 +32,15 @@ class WwSprite {
     public pixijsSprite = null;
     public scaleFactor = WwSprite.BASE_SCALE_FACTOR;
     public url: string;
+    public PIXI: any;
 
     private _onReadyCallback: any;
 
-    constructor(x = 0, y = 0, mode='canvas') {
+    constructor(x = 0, y = 0, mode='canvas', PIXI?: any) {
         this.x = x;
         this.y = y;
         this.mode = mode;
+        this.PIXI = PIXI;
         this.width = 0;
         this.height = 0;
         this.pivotX = 0;
@@ -89,17 +91,17 @@ class WwSprite {
 
                 temp_img.src = url;
             } else if (this.mode === 'pixijs') {
-                if (!PIXI) {
+                if (!this.PIXI) {
                     console.log(`WwSprite: loadImageWithURLAndCallback: PIXI must be defined in 'pixijs' mode!`);
                 } else {
-                    let loader = new PIXI.loaders.Loader()
+                    let loader = new this.PIXI.loaders.Loader()
                         .add(url)
                         .once('complete', (loader, resources) =>
                         {
                             //console.log(`Load complete:`);
                             //console.log(this);
                             //console.log(resources);
-                            this.pixijsSprite = PIXI.Sprite.fromImage(this.url);
+                            this.pixijsSprite = this.PIXI.Sprite.fromImage(this.url);
                             this.onReady();
                         })
                         .load();
@@ -128,8 +130,8 @@ class WwSprite {
     }
 
     // draw(context: CanvasRenderingContext2D): void;
-    // draw(context: WwPixiRenderTextureContext): void;
-    draw(context: WwPixiRenderTextureContext | CanvasRenderingContext2D): void {
+    // draw(context: WwRenderTextureContext): void;
+    draw(context: WwRenderTextureContext | CanvasRenderingContext2D): void {
         if (context instanceof CanvasRenderingContext2D) {
             if (this.img) {
                 context.globalAlpha = this.alpha;
@@ -147,7 +149,7 @@ class WwSprite {
             } else {
                 this.fill(context);
             }
-        } else if (context instanceof WwPixiRenderTextureContext) {
+        } else if (context instanceof WwRenderTextureContext) {
             this.pixijsSprite.x = this.x;
             this.pixijsSprite.y = this.y;
             this.pixijsSprite.scale.x = this.scale;
@@ -155,7 +157,7 @@ class WwSprite {
             this.pixijsSprite.anchor.x = 0.5;
             this.pixijsSprite.anchor.y = 0.5;
 
-            let container = new PIXI.Container();
+            let container = new this.PIXI.Container();
             container.addChild(this.pixijsSprite);
             context.render(container);
         }
@@ -217,9 +219,6 @@ class WwSprite {
         console.log(`WwSprite: ${msg}`);
     }
 }
-
-export default WwSprite;
-
 
 /*
  package org.wwlib.starling

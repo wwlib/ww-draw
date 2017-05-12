@@ -6,9 +6,9 @@
  * @author Andrew Rapo (andrew@worthwhilegames.org)
  * @license MIT
  */
-import Point from './Point';
-import WwBrush from './WwBrush';
-declare class WwDrawingHistoryBrushCommand {
+import { Point } from './Point';
+import { WwBrush } from './WwBrush';
+export declare class WwDrawingHistoryBrushCommand {
     brushExpansionFactor: number;
     brushBlendMode: string;
     executionTime: number;
@@ -65,4 +65,3 @@ declare class WwDrawingHistoryBrushCommand {
     static clone(_command: any, data_object?: any): WwDrawingHistoryBrushCommand;
     dispose(): void;
 }
-export default WwDrawingHistoryBrushCommand;

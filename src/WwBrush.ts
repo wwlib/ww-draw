@@ -8,13 +8,13 @@
  * @license MIT
  */
 
-import WwSprite from './WwSprite';
+import { WwSprite } from './WwSprite';
 
-class WwBrush extends WwSprite {
+export class WwBrush extends WwSprite {
 
     public color: number;
-    constructor(mode='canvas') {
-        super(0, 0, mode);
+    constructor(mode='canvas', PIXI?: any) {
+        super(0, 0, mode, PIXI);
         this.color = null;
     }
 
@@ -27,7 +27,6 @@ class WwBrush extends WwSprite {
     }
 }
 
-export default WwBrush;
 /*
  package org.wwlib.starling
  {

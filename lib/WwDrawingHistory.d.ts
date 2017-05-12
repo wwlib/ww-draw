@@ -6,9 +6,9 @@
  * @author Andrew Rapo (andrew@worthwhilegames.org)
  * @license MIT
  */
-import WwDrawingHistoryUnit from './WwDrawingHistoryUnit';
-import Rect from './Rect';
-declare class WwDrawingHistory {
+import { WwDrawingHistoryUnit } from './WwDrawingHistoryUnit';
+import { Rect } from './Rect';
+export declare class WwDrawingHistory {
     units: WwDrawingHistoryUnit[];
     startTime: number;
     duration: number;
@@ -22,4 +22,3 @@ declare class WwDrawingHistory {
     concatAllCommands(layer?: any): WwDrawingHistoryUnit;
     readonly json: any;
 }
-export default WwDrawingHistory;

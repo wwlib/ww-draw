@@ -2,9 +2,9 @@
  * Created by andrew rapo (andrew@worthwhilegames.org) on 4/14/15.
  */
 
-import Point from './Point';
+import { Point } from './Point';
 
-class Rect {
+export class Rect {
 
     public top: number;
     public left: number;
@@ -58,5 +58,3 @@ class Rect {
         this.expandToIncludePoint(new Point(rect.right, rect.bottom));
     }
 }
-
-export default Rect;

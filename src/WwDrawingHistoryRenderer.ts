@@ -2,18 +2,18 @@
  * Created by andrew rapo (andrew@worthwhilegames.org) on 8/13/15.
  */
 
-import WwDrawingHistory from './WwDrawingHistory';
-import WwDrawingHistoryUnit from './WwDrawingHistoryUnit';
-import WwDrawingHistoryBrushCommand from './WwDrawingHistoryBrushCommand';
-import WwPixiRenderTextureContext from './WwPixiRenderTextureContext';
-import WwBrush from './WwBrush';
-import Point from './Point.js';
-import Rect from './Rect';
+import { WwDrawingHistory } from './WwDrawingHistory';
+import { WwDrawingHistoryUnit } from './WwDrawingHistoryUnit';
+import { WwDrawingHistoryBrushCommand } from './WwDrawingHistoryBrushCommand';
+import { WwRenderTextureContext } from './WwRenderTextureContext';
+import { WwBrush } from './WwBrush';
+import { Point } from './Point';
+import { Rect } from './Rect';
 
-class WwDrawingHistoryRenderer {
+export class WwDrawingHistoryRenderer {
 
     public history: WwDrawingHistory;
-    public context: CanvasRenderingContext2D | WwPixiRenderTextureContext;
+    public context: CanvasRenderingContext2D | WwRenderTextureContext;
     public boundingRect: Rect;
     public x: number;
     public y: number;
@@ -28,7 +28,7 @@ class WwDrawingHistoryRenderer {
     public brush: WwBrush;
     public mergedCommandsUnit: WwDrawingHistoryUnit;
 
-    constructor(history, context: CanvasRenderingContext2D | WwPixiRenderTextureContext, bounding_rect=null, center_drawing=false, scale=null, start_time=0, end_time=0) {
+    constructor(history, context: CanvasRenderingContext2D | WwRenderTextureContext, bounding_rect=null, center_drawing=false, scale=null, start_time=0, end_time=0) {
         this.history = history;
         this.context = context;
         this.boundingRect = bounding_rect;
@@ -158,5 +158,3 @@ class WwDrawingHistoryRenderer {
         this.time = end_time;
     }
 }
-
-export default WwDrawingHistoryRenderer;

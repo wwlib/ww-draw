@@ -1,4 +1,4 @@
-declare class Rect {
+export declare class Rect {
     top: number;
     left: number;
     width: number;
@@ -13,4 +13,3 @@ declare class Rect {
     expandToIncludePoint(point: any): void;
     expandToIncludeRect(rect: any): void;
 }
-export default Rect;

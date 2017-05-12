@@ -8,13 +8,12 @@
  * @license MIT
  */
 
-import Point from './Point';
+import { Point } from './Point';
 import { getTimer } from './GetTimer';
-import WwBrush from './WwBrush';
-import WwDrawingBrushManager from './WwDrawingBrushManager';
+import { WwBrush } from './WwBrush';
+import { WwDrawingBrushManager } from './WwDrawingBrushManager';
 
-
-class WwDrawingHistoryBrushCommand {
+export class WwDrawingHistoryBrushCommand {
 
     public brushExpansionFactor: number;
     public brushBlendMode: string;
@@ -368,8 +367,6 @@ class WwDrawingHistoryBrushCommand {
         this._location = null;
     }
 }
-
-export default WwDrawingHistoryBrushCommand;
 
 /*
 import flash.utils.getTimer;

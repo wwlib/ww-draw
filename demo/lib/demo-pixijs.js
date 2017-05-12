@@ -5,11 +5,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const path = require('path');
 const PIXI = require("pixi.js");
-const rect_1 = require("./rect");
-const WwDrawingBrushManager_1 = require("./WwDrawingBrushManager");
-const WwDrawingHistoryRenderer_1 = require("./WwDrawingHistoryRenderer");
-const WwDrawingHistoryLoader_1 = require("./WwDrawingHistoryLoader");
-const WwPixiRenderTextureContext_1 = require("./WwPixiRenderTextureContext");
+const WwLib = require("../../lib");
 let canvas = document.getElementById("demo-canvas");
 if (canvas) {
     canvas.style.display = "none";
@@ -31,16 +27,16 @@ let brt = new PIXI.BaseRenderTexture(1280, 720, PIXI.SCALE_MODES.LINEAR, 1);
 let renderTexture = new PIXI.RenderTexture(brt);
 rtSprite = new PIXI.Sprite(renderTexture);
 app.stage.addChild(rtSprite);
-WwDrawingBrushManager_1.default.instance.init(onBrushesLoaded, 'pixijs');
+WwLib.WwDrawingBrushManager.instance.init(onBrushesLoaded.bind(this), null, 'pixijs', PIXI);
 function onBrushesLoaded(brushes) {
     console.log(`onBrushesLoaded:`);
     console.log(brushes);
-    let historyLoader = new WwDrawingHistoryLoader_1.default();
+    let historyLoader = new WwLib.WwDrawingHistoryLoader();
     historyLoader.parseDrawingData(TestData);
-    let render_rect = new rect_1.default(110, 390, 500, 500);
+    let render_rect = new WwLib.Rect(110, 390, 500, 500);
     let webGlRenderer = app.renderer;
-    let renderTextureContext = new WwPixiRenderTextureContext_1.default(webGlRenderer, renderTexture);
-    drawing_renderer = new WwDrawingHistoryRenderer_1.default(historyLoader.history, renderTextureContext, render_rect, true);
+    let renderTextureContext = new WwLib.WwRenderTextureContext(webGlRenderer, renderTexture);
+    drawing_renderer = new WwLib.WwDrawingHistoryRenderer(historyLoader.history, renderTextureContext, render_rect, true);
     window.requestAnimationFrame(update);
 }
 function update() {

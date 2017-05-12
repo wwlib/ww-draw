@@ -2,34 +2,18 @@
  * Created by andrew rapo (andrew@worthwhilegames.org) on 7/7/15.
  */
 
-import Point from './point';
-import Rect from './rect';
-import { getTimer } from './GetTimer';
-import Sprite from './WwSprite';
-import Brush from './WwBrush';
-import DrawingHistoryBrushCommand from './WwDrawingHistoryBrushCommand';
-import DeviceInfo from './WwDeviceInfo';
-import DrawingHistoryUnit from './WwDrawingHistoryUnit';
-import DrawingBrushManager from './WwDrawingBrushManager';
-import DrawingHistory from './WwDrawingHistory';
-import DrawingHistoryRenderer from './WwDrawingHistoryRenderer';
-import DrawingHistoryLoader from './WwDrawingHistoryLoader';
-import PixiRenderTextureContext from './WwPixiRenderTextureContext';
+export { Point } from './Point';
+export { Rect } from './Rect';
+export { getTimer } from './GetTimer';
+export { WwSprite } from './WwSprite';
+export { WwBrush } from './WwBrush';
+export { WwDrawingHistoryBrushCommand } from './WwDrawingHistoryBrushCommand';
+export { WwDeviceInfo } from './WwDeviceInfo';
+export { WwDrawingHistoryUnit } from './WwDrawingHistoryUnit';
+export { WwDrawingBrushManager } from './WwDrawingBrushManager';
+export { WwDrawingHistory } from './WwDrawingHistory';
+export { WwDrawingHistoryRenderer } from './WwDrawingHistoryRenderer';
+export { WwDrawingHistoryLoader } from './WwDrawingHistoryLoader';
+export { WwRenderTextureContext } from './WwRenderTextureContext';
 
-console.log("ww-draw module loaded.")
-
-export default {
-    Point,
-    Rect,
-    getTimer,
-    Sprite,
-    Brush,
-    DrawingHistoryBrushCommand,
-    DeviceInfo,
-    DrawingHistoryUnit,
-    DrawingBrushManager,
-    DrawingHistory,
-    DrawingHistoryRenderer,
-    DrawingHistoryLoader,
-    PixiRenderTextureContext
-};
+console.log("ww-draw module loaded.");

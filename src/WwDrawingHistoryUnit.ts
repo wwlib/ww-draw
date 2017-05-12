@@ -8,14 +8,13 @@
  * @license MIT
  */
 
-import Point from './Point';
-import Rect from './Rect';
+import { Point } from './Point';
+import { Rect } from './Rect';
 import { getTimer } from './GetTimer';
-import WwDrawingHistoryBrushCommand from './WwDrawingHistoryBrushCommand';
-import WwDrawingHistoryDataTranslator from './WwDrawingHistoryDataTranslator';
+import { WwDrawingHistoryBrushCommand } from './WwDrawingHistoryBrushCommand';
+import { WwDrawingHistoryDataTranslator } from './WwDrawingHistoryDataTranslator';
 
-
-class WwDrawingHistoryUnit {
+export class WwDrawingHistoryUnit {
 
     public id: number;
     public commands: WwDrawingHistoryBrushCommand[];
@@ -209,8 +208,6 @@ class WwDrawingHistoryUnit {
     }
 
 }
-
-export default WwDrawingHistoryUnit;
 
 /*
 

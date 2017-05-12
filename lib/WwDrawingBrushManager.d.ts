@@ -1,5 +1,6 @@
-export default class WwDrawingBrushManager {
+export declare class WwDrawingBrushManager {
     static _instance: WwDrawingBrushManager;
+    initialized: boolean;
     brushIdArray: string[];
     brushURLs: any;
     brushes: any;
@@ -7,9 +8,10 @@ export default class WwDrawingBrushManager {
     callback: any;
     mode: string;
     brushesObject: any;
+    PIXI: any;
     constructor();
     static readonly instance: WwDrawingBrushManager;
-    init(callback?: any, mode?: string, brushes_obj?: any): void;
+    init(callback?: any, brushes_obj?: any, mode?: string, PIXI?: any): void;
     onBrushImageLoaded(sprite: any): void;
     getBrushFromBrushId(_id: any): any;
     getBrushIdWithIndex(index: any): string;
