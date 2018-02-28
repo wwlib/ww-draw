@@ -2,7 +2,10 @@ module.exports = {
     entry: "./src/index.ts",
     output: {
         filename: "index.js",
-        path: __dirname + "/lib"
+        path: __dirname + "/lib",
+        libraryTarget: 'umd',
+        library: 'ww-draw',
+        umdNamedDefine: true
     },
     // Enable sourcemaps for debugging webpack's output.
     devtool: "source-map",
