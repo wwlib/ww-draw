@@ -1,6 +1,4 @@
-src
-.idea
-node_modules
-.DS_Store
-images/drawings/captured-drawing.json
-demo
+*
+!lib/**/*
+!package.json
+!*.md

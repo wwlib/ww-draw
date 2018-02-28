@@ -4,16 +4,13 @@
         "moduleResolution": "node",
         "target": "es6",
         "noImplicitAny": false,
-        "rootDir": "./src",
         "outDir": "./lib",
         "sourceMap": true,
         "experimentalDecorators": true,
+        "suppressImplicitAnyIndexErrors": true,
         "declaration": true
     },
-    "exclude": [
-        "demo",
-        "lib",
-        "node_modules"
-    ],
-    "compileOnSave": false
+    "include": [
+        "./src/**/*"
+    ]
 }
