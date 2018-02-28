@@ -192,7 +192,7 @@ function onPressUpHandler(e) {
 }
 
 function writeDrawingJSON() {
-    console.log(drawingHistory.json);
+    console.log(JSON.stringify(drawingHistory.json));
 }
 
 

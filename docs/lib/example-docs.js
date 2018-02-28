@@ -52437,7 +52437,7 @@ function onPressUpHandler(e) {
     nextState = 'replayDrawing';
 }
 function writeDrawingJSON() {
-    console.log(drawingHistory.json);
+    console.log(JSON.stringify(drawingHistory.json));
 }
 function replayDrawing() {
     if (drawingRenderer.ended) {

@@ -2,6 +2,9 @@
 
 ww-draw is a time-based drawing library for capturing and replaying multi-layered, multi-author drawings - as they were drawn. Included is a json file format for storing captured data.
 
+- [https://wwlib.github.io/ww-draw/](https://wwlib.github.io/ww-draw/)
+- [https://github.com/wwlib/ww-draw/](https://github.com/wwlib/ww-draw/)
+
 ### using ww-draw
 `npm install ww-draw pixi.js jsonfile`
 
