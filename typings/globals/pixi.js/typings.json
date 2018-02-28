@@ -1,8 +1,0 @@
-{
-  "resolution": "main",
-  "tree": {
-    "src": "https://raw.githubusercontent.com/pixijs/pixi-typescript/v4.x/pixi.js.d.ts",
-    "raw": "github:pixijs/pixi-typescript/pixi.js.d.ts#v4.x",
-    "typings": "https://raw.githubusercontent.com/pixijs/pixi-typescript/v4.x/pixi.js.d.ts"
-  }
-}

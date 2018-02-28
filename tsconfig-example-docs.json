@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "target": "es6",
+        "noImplicitAny": false,
+        "outDir": "./docs/lib",
+        "sourceMap": true,
+        "experimentalDecorators": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "declaration": false
+    },
+    "include": [
+        "./example-src/**/*"
+    ]
+}

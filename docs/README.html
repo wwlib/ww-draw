@@ -1,0 +1,70 @@
+<html>
+<head>
+    <title>ww-draw library</title>
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+    <style>
+      html {
+          display: table;
+          margin: auto;
+      }
+
+      body {
+          display: table-cell;
+          vertical-align: middle;
+      }
+    </style>
+</head>
+<body>
+
+  <h3 id="wwdrawatimebaseddrawingcaptureandreplaylibrary">ww-draw - a time-based drawing capture and replay library</h3>
+
+  <p>ww-draw is a time-based drawing library for capturing and replaying multi-layered, multi-author drawings - as they were drawn. Included is a json file format for storing captured data.</p>
+
+  <h3 id="usingwwdraw">using ww-draw</h3>
+
+  <p><code>npm install ww-draw pixi.js jsonfile</code></p>
+
+  <p><code>import * as WwDraw from 'ww-draw';</code></p>
+
+  <h3 id="buildingthelibraryandexamples">building the library and examples</h3>
+
+  <p><code>npm install -g electron</code> (required for the demos)</p>
+
+  <p><code>npm run build</code></p>
+
+  <p><code>npm run build:example</code></p>
+
+  <p><code>npm run build:example:capture</code></p>
+
+  <p><code>npm run build:example:canvas</code></p>
+
+  <p><code>npm run build:example:docs</code></p>
+
+  <p><code>cd electron</code></p>
+
+  <h4 id="pixijsreplay">PixiJs replay</h4>
+
+  <ul>
+  <li>a pixijs demo of drawing replay, use:</li>
+
+  <li><code>electron index.js</code></li>
+  </ul>
+
+  <h4 id="pixijscapture">PixiJs capture</h4>
+
+  <ul>
+  <li>a pixijs demo of drawing capture &amp; replay, use:</li>
+
+  <li><code>electron index-capture.js</code></li>
+  </ul>
+
+  <h4 id="canvasreplay">Canvas replay</h4>
+
+  <ul>
+  <li>a canvas-based demo of drawing replay, use:</li>
+
+  <li><code>electron index-canvas.js</code></li>
+  </ul>
+
+</body>
+</html>

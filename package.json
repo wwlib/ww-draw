@@ -6,30 +6,37 @@
   "config": {
     "watch": "src",
     "app": "src/index.ts",
-    "lib": "lib/*.*"
+    "lib": "lib/*.*",
+    "examplelib": "electron/lib/*.*",
+    "docslib": "docs/lib/*.*"
   },
   "scripts": {
-    "build": "npm run clean; tsc",
+    "build": "npm run clean; webpack",
+    "build:example": "webpack --config webpack.config.example.js",
+    "build:example:capture": "webpack --config webpack.config.example.capture.js",
+    "build:example:canvas": "webpack --config webpack.config.example.canvas.js",
+    "build:example:docs": "webpack --config webpack.config.example.docs.js",
     "test": "mocha",
-    "clean": "cross-conf-env rimraf npm_package_config_lib"
+    "clean": "cross-conf-env rimraf npm_package_config_lib",
+    "clean:example": "cross-conf-env rimraf npm_package_config_examplelib",
+    "clean:docs": "cross-conf-env rimraf npm_package_config_docslib"
   },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com:wwlib/ww-draw.git"
   },
-  "dependencies-save": {
-    "jsonfile": "^2.4.0",
-    "pixi-compressed-textures": "^1.1.4",
-    "pixi.js": "^4.4.1"
-  },
   "dependencies": {
+    "@types/node": "^9.4.6",
     "jsonfile": "^2.4.0"
   },
   "devDependencies": {
     "cross-conf-env": "latest",
-    "typescript": "^2.0.0",
+    "mocha": "~2.4.5",
+    "pixi.js": "^4.7.0",
     "rimraf": "latest",
-    "mocha": "~2.4.5"
+    "typescript": "^2.0.0",
+    "awesome-typescript-loader": "^3.5.0",
+    "source-map-loader": "^0.2.3"
   },
   "keywords": [
     "drawing"

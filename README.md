@@ -1,18 +1,38 @@
-# WwDraw - a time-based drawing replay library
+### ww-draw - a time-based drawing capture and replay library
 
-- WwDraw is a work in progress
-- To install electron
-- `npm install -g electron`
+ww-draw is a time-based drawing library for capturing and replaying multi-layered, multi-author drawings - as they were drawn. Included is a json file format for storing captured data.
 
-## Demos (in the demo directory)
-### PixiJs replay
+### using ww-draw
+`npm install ww-draw pixi.js jsonfile`
+
+`import * as WwDraw from 'ww-draw';`
+
+
+### building the library and examples
+
+`npm install -g electron` (required for the demos)
+
+`npm run build`
+
+`npm run build:example`
+
+`npm run build:example:capture`
+
+`npm run build:example:canvas`
+
+`npm run build:example:docs`
+
+`cd electron`
+
+
+#### PixiJs replay
 - a pixijs demo of drawing replay, use:
 - `electron index.js`
 
-### PixiJs capture
+#### PixiJs capture
 - a pixijs demo of drawing capture & replay, use:
 - `electron index-capture.js`
 
-### Canvas replay
+#### Canvas replay
 - a canvas-based demo of drawing replay, use:
 - `electron index-canvas.js`
