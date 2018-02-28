@@ -30,7 +30,8 @@ module.exports = {
     // dependencies, which allows browsers to cache those libraries between builds.
 
     externals: {
-        "pixi.js": "pixi.js"
+        "pixi.js": "pixi.js",
+        "jsonfile": "jsonfile"
     },
     node: {
         fs: "empty"
