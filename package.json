@@ -1,6 +1,6 @@
 {
   "name": "ww-draw",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A time-based drawing library for capturing and replaying multi-layered, multi-author drawings",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
