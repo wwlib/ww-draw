@@ -10,6 +10,8 @@ ww-draw is a time-based drawing library for capturing and replaying multi-layere
 
 `import * as WwDraw from 'ww-draw';`
 
+see: [https://github.com/wwlib/ww-draw-example/](https://github.com/wwlib/ww-draw-exampe/)
+
 
 ### building the library and examples
 
