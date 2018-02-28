@@ -31,7 +31,6 @@ module.exports = {
 
     externals: {
         "pixi.js": "pixi.js",
-        "jsonfile": "jsonfile"
     },
     node: {
         fs: "empty"
