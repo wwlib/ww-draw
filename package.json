@@ -3,6 +3,7 @@
   "version": "0.1.2",
   "description": "A time-based drawing library for capturing and replaying multi-layered, multi-author drawings",
   "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
   "config": {
     "watch": "src",
     "app": "src/index.ts",
