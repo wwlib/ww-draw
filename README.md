@@ -15,7 +15,9 @@ see: [https://github.com/wwlib/ww-draw-example/](https://github.com/wwlib/ww-dra
 
 ### building the library and examples
 
-`npm install -g electron` (required for the demos)
+`npm install -g electron` (required to run the demos)
+
+`npm install -g webpack` (required to build the library and demos)
 
 `npm run build`
 
