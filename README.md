@@ -19,6 +19,8 @@ see: [https://github.com/wwlib/ww-draw-example/](https://github.com/wwlib/ww-dra
 
 `npm install -g webpack` (required to build the library and examples)
 
+`npm install -g webpack-cli` (required to build the library and examples)
+
 `npm run build`
 
 `npm run build:example`
